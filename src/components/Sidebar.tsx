@@ -21,18 +21,40 @@ import {
   Truck,
 } from "lucide-react";
 
-const navItems = [
-  { href: "/", label: "ダッシュボード", icon: LayoutDashboard },
-  { href: "/products", label: "商品カタログ", icon: Package },
-  { href: "/search", label: "AI検索", icon: Search },
-  { href: "/deals", label: "商談管理", icon: Handshake },
-  { href: "/activities", label: "営業日報", icon: ClipboardList },
-  { href: "/samples", label: "サンプル管理", icon: Truck },
-  { href: "/proposals", label: "提案書作成", icon: FileText },
-  { href: "/analytics", label: "販売分析", icon: BarChart3 },
-  { href: "/customers", label: "顧客管理", icon: Users },
-  { href: "/qr", label: "QR管理", icon: QrCode },
+const navGroups = [
+  {
+    label: "",
+    items: [
+      { href: "/", label: "ダッシュボード", icon: LayoutDashboard },
+    ],
+  },
+  {
+    label: "営業",
+    items: [
+      { href: "/deals", label: "商談管理", icon: Handshake },
+      { href: "/activities", label: "営業日報", icon: ClipboardList },
+      { href: "/samples", label: "サンプル管理", icon: Truck },
+      { href: "/customers", label: "顧客管理", icon: Users },
+    ],
+  },
+  {
+    label: "商品・提案",
+    items: [
+      { href: "/products", label: "商品カタログ", icon: Package },
+      { href: "/search", label: "AI検索", icon: Search },
+      { href: "/proposals", label: "提案書作成", icon: FileText },
+    ],
+  },
+  {
+    label: "分析・ツール",
+    items: [
+      { href: "/analytics", label: "販売分析", icon: BarChart3 },
+      { href: "/qr", label: "QR管理", icon: QrCode },
+    ],
+  },
 ];
+
+const navItems = navGroups.flatMap((g) => g.items);
 
 export default function Sidebar() {
   const pathname = usePathname();
@@ -50,7 +72,7 @@ export default function Sidebar() {
         key={item.href}
         href={item.href}
         onClick={() => setMobileOpen(false)}
-        className={`flex items-center gap-3 px-3 py-2.5 rounded-md text-sm transition-colors ${
+        className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
           collapsed ? "justify-center px-2" : ""
         } ${
           isActive
@@ -67,7 +89,7 @@ export default function Sidebar() {
 
   const sidebarContent = (
     <>
-      <div className={`h-14 flex items-center border-b border-slate-200 dark:border-slate-700 ${collapsed ? "justify-center px-2" : "justify-between px-4"}`}>
+      <div className={`h-14 flex items-center border-b border-slate-200 dark:border-slate-700 ${collapsed ? "justify-center px-3" : "justify-between px-4"}`}>
         {!collapsed && (
           <span className="text-sm font-semibold text-slate-800 dark:text-slate-200 tracking-tight">
             DREAM GRAB
@@ -84,8 +106,22 @@ export default function Sidebar() {
         </button>
       </div>
 
-      <nav className="flex-1 px-2 py-3 space-y-1 overflow-y-auto">
-        {navItems.map(navLink)}
+      <nav className="flex-1 px-2 py-3 overflow-y-auto">
+        {navGroups.map((group, gi) => (
+          <div key={gi} className={gi > 0 ? "mt-4" : ""}>
+            {group.label && !collapsed && (
+              <p className="px-3 mb-1 text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
+                {group.label}
+              </p>
+            )}
+            {collapsed && gi > 0 && (
+              <div className="mx-2 mb-2 border-t border-slate-200 dark:border-slate-700" />
+            )}
+            <div className="space-y-0.5">
+              {group.items.map(navLink)}
+            </div>
+          </div>
+        ))}
       </nav>
 
       <div className="px-2 py-3 border-t border-slate-200 dark:border-slate-700">
@@ -121,12 +157,12 @@ export default function Sidebar() {
 
       {/* Desktop sidebar */}
       <aside className={`hidden lg:flex fixed left-0 top-0 h-full bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex-col z-50 transition-all duration-200 ${
-        collapsed ? "w-14" : "w-52"
+        collapsed ? "w-16" : "w-56"
       }`}>
         {sidebarContent}
       </aside>
 
-      <div className={`hidden lg:block shrink-0 transition-all duration-200 ${collapsed ? "w-14" : "w-52"}`} />
+      <div className={`hidden lg:block shrink-0 transition-all duration-200 ${collapsed ? "w-16" : "w-56"}`} />
     </>
   );
 }

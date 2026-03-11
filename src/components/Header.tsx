@@ -15,7 +15,7 @@ export default function Header({
 
   return (
     <>
-      <header className="h-13 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between px-4 md:px-6 sticky top-0 z-40">
+      <header className="h-14 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between px-4 md:px-8 sticky top-0 z-40">
         <button
           onClick={onOpenCommandPalette}
           data-search-trigger
@@ -23,7 +23,7 @@ export default function Header({
         >
           <Search size={15} />
           <span className="hidden sm:inline">検索...</span>
-          <kbd className="hidden md:inline text-[11px] bg-slate-100 dark:bg-slate-700 text-slate-400 px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-600 ml-6 font-mono">
+          <kbd className="hidden md:inline text-xs bg-slate-100 dark:bg-slate-700 text-slate-400 px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-600 ml-6 font-mono">
             ⌘K
           </kbd>
         </button>
@@ -42,9 +42,9 @@ export default function Header({
             <Bell size={16} />
             <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-red-500 rounded-full" />
           </button>
-          <div className="flex items-center gap-2.5 pl-3 ml-1.5 border-l border-slate-200 dark:border-slate-700">
-            <div className="w-7 h-7 bg-slate-700 dark:bg-slate-500 rounded-full flex items-center justify-center">
-              <span className="text-[11px] text-white font-medium">田</span>
+          <div className="flex items-center gap-2.5 pl-3 ml-2 border-l border-slate-200 dark:border-slate-700">
+            <div className="w-8 h-8 bg-slate-700 dark:bg-slate-500 rounded-full flex items-center justify-center">
+              <span className="text-xs text-white font-medium">田</span>
             </div>
             <span className="text-sm text-slate-600 dark:text-slate-300 hidden md:inline">田中 太郎</span>
           </div>

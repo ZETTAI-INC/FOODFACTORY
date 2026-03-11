@@ -77,25 +77,23 @@ export default function DashboardPage() {
     .slice(0, 4);
 
   return (
-    <div className="space-y-6 max-w-6xl">
-      {/* Stats - inline */}
-      <div className="flex flex-wrap gap-8 pt-1">
+    <div className="space-y-8 max-w-7xl">
+      {/* Stats */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
         {stats.map((s) => (
-          <div key={s.label}>
+          <div key={s.label} className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 md:p-5">
             <p className="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider">{s.label}</p>
-            <p className="text-2xl font-semibold text-slate-800 dark:text-slate-100 mt-1">{s.value}</p>
-            <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">{s.sub}</p>
+            <p className="text-2xl font-semibold text-slate-800 dark:text-slate-100 mt-2">{s.value}</p>
+            <p className="text-xs text-slate-400 dark:text-slate-500 mt-1">{s.sub}</p>
           </div>
         ))}
       </div>
 
-      <div className="h-px bg-slate-200 dark:bg-slate-700" />
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
         {/* Left: Actions + Activity */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-8">
           {/* Quick links */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
             {[
               { label: "商談管理", href: "/deals", icon: Handshake },
               { label: "営業日報", href: "/activities", icon: ClipboardList },
@@ -107,7 +105,7 @@ export default function DashboardPage() {
               const Icon = a.icon;
               return (
                 <Link key={a.href} href={a.href}>
-                  <div className="flex items-center gap-3 px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-sm transition-all text-sm text-slate-700 dark:text-slate-300">
+                  <div className="flex items-center gap-3 px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-sm transition-all text-sm text-slate-700 dark:text-slate-300">
                     <Icon size={16} className="text-slate-400" />
                     {a.label}
                   </div>
@@ -126,11 +124,11 @@ export default function DashboardPage() {
                 商談一覧 →
               </Link>
             </div>
-            <div className="space-y-0 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 overflow-hidden">
+            <div className="space-y-0 border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800 overflow-hidden">
               {todayActions.map((a, i) => {
                 const Icon = a.icon;
                 return (
-                  <div key={i} className={`flex items-center gap-3 px-4 py-3 border-b border-slate-100 dark:border-slate-700 last:border-0 text-sm ${a.overdue ? "bg-red-50/50 dark:bg-red-900/10" : ""}`}>
+                  <div key={i} className={`flex items-center gap-3 px-4 py-3.5 border-b border-slate-100 dark:border-slate-700 last:border-0 text-sm ${a.overdue ? "bg-red-50/50 dark:bg-red-900/10" : ""}`}>
                     <Icon size={15} className={a.overdue ? "text-red-400" : "text-slate-400 dark:text-slate-500"} />
                     <div className="flex-1 min-w-0">
                       <span className="text-slate-600 dark:text-slate-300 truncate block">{a.action}</span>
@@ -151,7 +149,7 @@ export default function DashboardPage() {
           </div>
 
           {/* AI insight - subtle */}
-          <div className="bg-slate-50 dark:bg-slate-800/50 rounded-lg p-5 border border-slate-200 dark:border-slate-700">
+          <div className="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-5 md:p-6 border border-slate-200 dark:border-slate-700">
             <p className="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2.5">AI インサイト</p>
             <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
               手羽先餃子が前年比130%で急成長中。ビアガーデンシーズン前の4月に居酒屋向け集中提案が効果的です。チキンステーキ（ハーブ）はカフェの春メニュー切り替えに合わせた提案を今月中に。
@@ -164,9 +162,9 @@ export default function DashboardPage() {
           {/* Recent Activity */}
           <div>
             <p className="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-3">最近のアクティビティ</p>
-            <div className="space-y-0 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 overflow-hidden">
+            <div className="space-y-0 border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800 overflow-hidden">
               {recentActivities.map((a, i) => (
-                <div key={i} className="flex items-center gap-3 px-4 py-3 border-b border-slate-100 dark:border-slate-700 last:border-0 text-sm">
+                <div key={i} className="flex items-center gap-3 px-4 py-3.5 border-b border-slate-100 dark:border-slate-700 last:border-0 text-sm">
                   <span className="w-6 h-6 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center shrink-0">
                     <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">{a.who[0]}</span>
                   </span>
@@ -186,10 +184,10 @@ export default function DashboardPage() {
               すべて →
             </Link>
           </div>
-          <div className="border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 overflow-hidden">
+          <div className="border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800 overflow-hidden">
             {growthProducts.map(({ product, growth }, i) => (
               <Link key={product.id} href={`/products/${product.id}`}>
-                <div className="flex items-center gap-3 px-4 py-3.5 border-b border-slate-100 dark:border-slate-700 last:border-0 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+                <div className="flex items-center gap-3 px-4 py-4 border-b border-slate-100 dark:border-slate-700 last:border-0 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
                   <span className="text-xs text-slate-400 dark:text-slate-500 w-4">{i + 1}</span>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-slate-700 dark:text-slate-200 truncate">{product.name}</p>
@@ -206,7 +204,7 @@ export default function DashboardPage() {
 
           {/* Top 4 products */}
           <p className="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider mt-6 mb-3">人気商品</p>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-3 md:gap-4">
             {products.slice(0, 4).map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
@@ -225,7 +223,7 @@ export default function DashboardPage() {
               すべて →
             </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             {recentProducts.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
@@ -244,7 +242,7 @@ export default function DashboardPage() {
               すべて →
             </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             {favoriteProducts.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
