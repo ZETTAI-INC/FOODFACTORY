@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   Package,
@@ -10,9 +11,11 @@ import {
   FileText,
   Clock,
   BarChart3,
+  Heart,
 } from "lucide-react";
-import { products } from "@/data/products";
+import { products, getProductById } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
+import { useFavorites } from "@/components/FavoritesProvider";
 
 const stats = [
   { label: "商品数", value: "20", sub: "7カテゴリ" },
@@ -38,6 +41,26 @@ const growthProducts = [
 ];
 
 export default function DashboardPage() {
+  const { favorites } = useFavorites();
+  const [recentIds, setRecentIds] = useState<string[]>([]);
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("recentlyViewed");
+      if (stored) setRecentIds(JSON.parse(stored));
+    } catch { /* ignore */ }
+  }, []);
+
+  const recentProducts = recentIds
+    .map((rid) => getProductById(rid))
+    .filter((p): p is NonNullable<typeof p> => !!p)
+    .slice(0, 4);
+
+  const favoriteProducts = favorites
+    .map((fid) => getProductById(fid))
+    .filter((p): p is NonNullable<typeof p> => !!p)
+    .slice(0, 4);
+
   return (
     <div className="space-y-6 max-w-6xl">
       {/* Stats - inline */}
@@ -139,6 +162,44 @@ export default function DashboardPage() {
           </div>
         </div>
       </div>
+
+      {/* Recently Viewed */}
+      {recentProducts.length > 0 && (
+        <div>
+          <div className="flex items-center justify-between mb-3">
+            <p className="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+              <Clock size={13} /> 最近閲覧した商品
+            </p>
+            <Link href="/products" className="text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-300">
+              すべて →
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {recentProducts.map((p) => (
+              <ProductCard key={p.id} product={p} />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Favorites */}
+      {favoriteProducts.length > 0 && (
+        <div>
+          <div className="flex items-center justify-between mb-3">
+            <p className="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+              <Heart size={13} /> お気に入り
+            </p>
+            <Link href="/products" className="text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-300">
+              すべて →
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {favoriteProducts.map((p) => (
+              <ProductCard key={p.id} product={p} />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

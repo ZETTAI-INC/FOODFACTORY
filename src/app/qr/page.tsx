@@ -135,18 +135,18 @@ export default function QRPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-slate-800">QR管理</h1>
-        <p className="text-slate-500 mt-1">
+        <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100">QR管理</h1>
+        <p className="text-slate-500 dark:text-slate-400 mt-1">
           商品ごとのQRコードを発行・管理します
         </p>
       </div>
 
       {/* Info Banner */}
-      <div className="bg-blue-50 border border-blue-100 rounded-xl p-6 flex items-start gap-4">
-        <Smartphone size={24} className="text-blue-500 shrink-0 mt-0.5" />
+      <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-slate-700 rounded-xl p-6 flex items-start gap-4">
+        <Smartphone size={24} className="text-blue-500" />
         <div>
-          <h3 className="font-bold text-blue-800 mb-1">QRコードの活用方法</h3>
-          <p className="text-sm text-blue-700">
+          <h3 className="font-bold text-blue-800 dark:text-blue-200 mb-1">QRコードの活用方法</h3>
+          <p className="text-sm text-blue-700 dark:text-blue-300">
             各商品のQRコードを印刷して商品パッケージや倉庫の棚に貼り付けることで、
             スマホで読み取るだけで商品詳細情報にアクセスできます。
             営業先でもリアルタイムに商品情報を確認できます。
@@ -156,13 +156,13 @@ export default function QRPage() {
 
       {/* Tabs and Actions */}
       <div className="flex items-center justify-between flex-wrap gap-3">
-        <div className="flex bg-slate-100 rounded-lg p-1">
+        <div className="flex bg-slate-100 dark:bg-slate-700 rounded-lg p-1">
           <button
             onClick={() => setActiveTab("list")}
             className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
               activeTab === "list"
-                ? "bg-white text-slate-800 shadow-sm"
-                : "text-slate-500 hover:text-slate-700"
+                ? "bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 shadow-sm"
+                : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
             }`}
           >
             <LayoutGrid size={16} />
@@ -172,8 +172,8 @@ export default function QRPage() {
             onClick={() => setActiveTab("print")}
             className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
               activeTab === "print"
-                ? "bg-white text-slate-800 shadow-sm"
-                : "text-slate-500 hover:text-slate-700"
+                ? "bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 shadow-sm"
+                : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
             }`}
           >
             <List size={16} />
@@ -204,10 +204,10 @@ export default function QRPage() {
           {products.map((product) => (
             <div
               key={product.id}
-              className="bg-white rounded-xl border border-slate-200 p-6 text-center hover:shadow-md transition-shadow group"
+              className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 text-center hover:shadow-md transition-shadow group"
             >
               {/* Generated QR Code */}
-              <div className="w-40 h-40 mx-auto mb-4 p-2 bg-white rounded-xl border border-slate-100 group-hover:border-blue-200 transition-colors">
+              <div className="w-40 h-40 mx-auto mb-4 p-2 bg-white rounded-xl border border-slate-100 dark:border-slate-700 group-hover:border-blue-200 dark:group-hover:border-blue-600 transition-colors">
                 <div
                   dangerouslySetInnerHTML={{
                     __html: generateQRCodeSVG(product.code, 140),
@@ -216,10 +216,10 @@ export default function QRPage() {
               </div>
 
               <div className="space-y-1 mb-4">
-                <span className="text-xs font-mono text-slate-400 bg-slate-50 px-2 py-0.5 rounded">
+                <span className="text-xs font-mono text-slate-400 dark:text-slate-500 bg-slate-50 dark:bg-slate-700/50 px-2 py-0.5 rounded">
                   {product.code}
                 </span>
-                <h3 className="font-bold text-slate-800 text-sm">
+                <h3 className="font-bold text-slate-800 dark:text-slate-100 text-sm">
                   {product.name}
                 </h3>
                 <div className="flex flex-wrap justify-center gap-1">

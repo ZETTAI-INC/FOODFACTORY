@@ -82,25 +82,25 @@ export default function KeyboardShortcuts() {
 
   return (
     <div className="fixed inset-0 bg-black/50 z-[90] flex items-center justify-center p-4" onClick={() => setShowHelp(false)}>
-      <div className="bg-white rounded-2xl max-w-md w-full shadow-2xl" onClick={(e) => e.stopPropagation()}>
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200">
-          <h2 className="font-bold text-slate-800 flex items-center gap-2">
+      <div className="bg-white dark:bg-slate-800 rounded-2xl max-w-md w-full shadow-2xl" onClick={(e) => e.stopPropagation()}>
+        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-700">
+          <h2 className="font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
             <Command size={18} />
             キーボードショートカット
           </h2>
-          <button onClick={() => setShowHelp(false)} className="p-1 hover:bg-slate-100 rounded">
+          <button onClick={() => setShowHelp(false)} className="p-1 hover:bg-slate-100 dark:hover:bg-slate-700 rounded">
             <X size={18} className="text-slate-400" />
           </button>
         </div>
         <div className="p-6 space-y-3">
           {shortcuts.map((s) => (
             <div key={s.label} className="flex items-center justify-between">
-              <span className="text-sm text-slate-600">{s.label}</span>
+              <span className="text-sm text-slate-600 dark:text-slate-300">{s.label}</span>
               <div className="flex gap-1">
                 {s.keys.map((k) => (
                   <kbd
                     key={k}
-                    className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200 font-mono min-w-[24px] text-center"
+                    className="text-xs bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-2 py-1 rounded border border-slate-200 dark:border-slate-600 font-mono min-w-[24px] text-center"
                   >
                     {k}
                   </kbd>
@@ -109,9 +109,9 @@ export default function KeyboardShortcuts() {
             </div>
           ))}
         </div>
-        <div className="px-6 py-3 bg-slate-50 rounded-b-2xl border-t border-slate-200">
+        <div className="px-6 py-3 bg-slate-50 dark:bg-slate-800/50 rounded-b-2xl border-t border-slate-200 dark:border-slate-700">
           <p className="text-xs text-slate-400 text-center">
-            <kbd className="bg-slate-200 px-1.5 py-0.5 rounded text-[10px]">?</kbd> でこの画面を表示/非表示
+            <kbd className="bg-slate-200 dark:bg-slate-700 px-1.5 py-0.5 rounded text-[10px]">?</kbd> でこの画面を表示/非表示
           </p>
         </div>
       </div>

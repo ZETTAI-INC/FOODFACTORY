@@ -68,7 +68,7 @@ const productPerformance = [
 const seasonalInsights = [
   {
     season: "春（3-5月）",
-    color: "from-pink-50 to-green-50 border-pink-200",
+    color: "from-pink-50 to-green-50 border-pink-200 dark:from-pink-900/20 dark:to-green-900/20 dark:border-pink-800",
     icon: "🌸",
     insight: "新年度の需要。学校給食の新規採用が集中。ハーブチキンはカフェのテラス需要で伸びる。",
     topProducts: ["チキンステーキ（ハーブ）", "白身魚フライ", "ささみカツ"],
@@ -76,7 +76,7 @@ const seasonalInsights = [
   },
   {
     season: "夏（6-8月）",
-    color: "from-blue-50 to-cyan-50 border-blue-200",
+    color: "from-blue-50 to-cyan-50 border-blue-200 dark:from-blue-900/20 dark:to-cyan-900/20 dark:border-blue-800",
     icon: "🏖️",
     insight: "ビアガーデン需要で居酒屋向けが好調。手羽先餃子とチキン唐揚げが最盛期。スタミナ系も好調。",
     topProducts: ["手羽先餃子", "チキン唐揚げ", "豚バラ焼肉"],
@@ -84,7 +84,7 @@ const seasonalInsights = [
   },
   {
     season: "秋（9-11月）",
-    color: "from-amber-50 to-orange-50 border-amber-200",
+    color: "from-amber-50 to-orange-50 border-amber-200 dark:from-amber-900/20 dark:to-orange-900/20 dark:border-amber-800",
     icon: "🍂",
     insight: "メンチカツなどの揚げ物需要が増加。グラタンやチョコレートケーキなど温かいメニューが伸びる。",
     topProducts: ["メンチカツ", "カニクリームコロッケ", "ほうれん草のグラタン"],
@@ -92,7 +92,7 @@ const seasonalInsights = [
   },
   {
     season: "冬（12-2月）",
-    color: "from-indigo-50 to-blue-50 border-indigo-200",
+    color: "from-indigo-50 to-blue-50 border-indigo-200 dark:from-indigo-900/20 dark:to-blue-900/20 dark:border-indigo-800",
     icon: "❄️",
     insight: "忘年会・新年会シーズン。居酒屋向けが年間ピーク。唐揚げが最も売れる時期。デザートもクリスマス需要。",
     topProducts: ["チキン唐揚げ", "エビフライ", "濃厚チョコレートケーキ"],
@@ -114,14 +114,14 @@ export default function AnalyticsPage() {
     <div className="space-y-8">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-800">販売分析</h1>
-          <p className="text-slate-500 mt-1">販売実績と傾向分析</p>
+          <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100">販売分析</h1>
+          <p className="text-slate-500 dark:text-slate-400 mt-1">販売実績と傾向分析</p>
         </div>
         <div className="flex items-center gap-3">
           <select
             value={period}
             onChange={(e) => setPeriod(e.target.value)}
-            className="px-4 py-2 rounded-lg border border-slate-200 text-sm bg-white cursor-pointer focus:border-blue-400 outline-none"
+            className="px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-sm bg-white dark:bg-slate-800 dark:text-slate-100 cursor-pointer focus:border-blue-400 outline-none"
           >
             <option value="3months">直近3ヶ月</option>
             <option value="6months">直近6ヶ月</option>
@@ -133,35 +133,35 @@ export default function AnalyticsPage() {
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white rounded-xl border border-slate-200 p-6 hover:shadow-md transition-shadow">
-          <p className="text-sm text-slate-500">年間売上（推定）</p>
-          <p className="text-2xl font-bold text-slate-800 mt-1">¥74,400,000</p>
-          <p className="text-xs text-emerald-600 mt-2 flex items-center gap-1">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 hover:shadow-md transition-shadow">
+          <p className="text-sm text-slate-500 dark:text-slate-400">年間売上（推定）</p>
+          <p className="text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">¥74,400,000</p>
+          <p className="text-xs text-emerald-600 dark:text-emerald-400 mt-2 flex items-center gap-1">
             <ArrowUpRight size={12} /> 前年比 107%
           </p>
         </div>
-        <div className="bg-white rounded-xl border border-slate-200 p-6 hover:shadow-md transition-shadow">
-          <p className="text-sm text-slate-500">月平均売上</p>
-          <p className="text-2xl font-bold text-slate-800 mt-1">¥6,200,000</p>
-          <p className="text-xs text-slate-400 mt-2">直近12ヶ月平均</p>
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 hover:shadow-md transition-shadow">
+          <p className="text-sm text-slate-500 dark:text-slate-400">月平均売上</p>
+          <p className="text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">¥6,200,000</p>
+          <p className="text-xs text-slate-400 dark:text-slate-500 mt-2">直近12ヶ月平均</p>
         </div>
-        <div className="bg-white rounded-xl border border-slate-200 p-6 hover:shadow-md transition-shadow">
-          <p className="text-sm text-slate-500">最高成長商品</p>
-          <p className="text-2xl font-bold text-slate-800 mt-1">手羽先餃子</p>
-          <p className="text-xs text-emerald-600 mt-2 flex items-center gap-1">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 hover:shadow-md transition-shadow">
+          <p className="text-sm text-slate-500 dark:text-slate-400">最高成長商品</p>
+          <p className="text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">手羽先餃子</p>
+          <p className="text-xs text-emerald-600 dark:text-emerald-400 mt-2 flex items-center gap-1">
             <TrendingUp size={12} /> 前年比 130%
           </p>
         </div>
-        <div className="bg-white rounded-xl border border-slate-200 p-6 hover:shadow-md transition-shadow">
-          <p className="text-sm text-slate-500">アクティブ商品</p>
-          <p className="text-2xl font-bold text-slate-800 mt-1">20商品</p>
-          <p className="text-xs text-blue-600 mt-2">7カテゴリ / 9業態</p>
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 hover:shadow-md transition-shadow">
+          <p className="text-sm text-slate-500 dark:text-slate-400">アクティブ商品</p>
+          <p className="text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">20商品</p>
+          <p className="text-xs text-blue-600 dark:text-blue-400 mt-2">7カテゴリ / 9業態</p>
         </div>
       </div>
 
       {/* KPI Progress */}
-      <div className="bg-white rounded-xl border border-slate-200 p-6">
-        <h2 className="font-bold text-slate-800 mb-4 flex items-center gap-2">
+      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+        <h2 className="font-bold text-slate-800 dark:text-slate-100 mb-4 flex items-center gap-2">
           <Target size={18} className="text-blue-500" />
           KPI進捗
         </h2>
@@ -172,18 +172,18 @@ export default function AnalyticsPage() {
             return (
               <div key={kpi.label}>
                 <div className="flex items-center justify-between mb-2">
-                  <p className="text-sm text-slate-600">{kpi.label}</p>
+                  <p className="text-sm text-slate-600 dark:text-slate-300">{kpi.label}</p>
                   <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${
-                    isAchieved ? "bg-emerald-50 text-emerald-600" : "bg-amber-50 text-amber-600"
+                    isAchieved ? "bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400" : "bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400"
                   }`}>
                     {isAchieved ? "達成" : `${Math.round(pct)}%`}
                   </span>
                 </div>
                 <div className="flex items-end gap-2 mb-2">
-                  <span className="text-xl font-bold text-slate-800">{kpi.current}</span>
-                  <span className="text-sm text-slate-400 pb-0.5">/ {kpi.target} {kpi.unit}</span>
+                  <span className="text-xl font-bold text-slate-800 dark:text-slate-100">{kpi.current}</span>
+                  <span className="text-sm text-slate-400 dark:text-slate-500 pb-0.5">/ {kpi.target} {kpi.unit}</span>
                 </div>
-                <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+                <div className="h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
                   <div
                     className={`h-full rounded-full transition-all ${isAchieved ? "bg-emerald-500" : "bg-blue-500"}`}
                     style={{ width: `${pct}%` }}
@@ -196,13 +196,13 @@ export default function AnalyticsPage() {
       </div>
 
       {/* Monthly Chart */}
-      <div className="bg-white rounded-xl border border-slate-200 p-6">
+      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="font-bold text-slate-800 flex items-center gap-2">
+          <h2 className="font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
             <BarChart3 size={18} className="text-blue-500" />
             月別売上推移
           </h2>
-          <div className="flex items-center gap-2 text-sm text-slate-500">
+          <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
             <Calendar size={14} />
             直近12ヶ月
           </div>
@@ -211,12 +211,12 @@ export default function AnalyticsPage() {
           {monthlyData.map((d, i) => (
             <div key={d.month} className="flex-1 flex flex-col items-center gap-2 group">
               <div className="relative">
-                <span className="text-xs text-slate-400 font-medium group-hover:text-blue-600 transition-colors">
+                <span className="text-xs text-slate-400 dark:text-slate-500 font-medium group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                   {d.value}
                 </span>
                 {/* Tooltip */}
                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block z-10">
-                  <div className="bg-slate-800 text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap shadow-lg">
+                  <div className="bg-slate-800 dark:bg-slate-600 text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap shadow-lg">
                     <p className="font-bold">{d.month}</p>
                     <p>¥{(d.value * 62000).toLocaleString()}</p>
                   </div>
@@ -232,7 +232,7 @@ export default function AnalyticsPage() {
                 }`}
                 style={{ height: `${(d.value / maxValue) * 200}px` }}
               />
-              <span className={`text-xs ${d.value === maxValue ? "text-blue-600 font-bold" : "text-slate-400"}`}>
+              <span className={`text-xs ${d.value === maxValue ? "text-blue-600 dark:text-blue-400 font-bold" : "text-slate-400 dark:text-slate-500"}`}>
                 {d.month}
               </span>
             </div>
@@ -242,8 +242,8 @@ export default function AnalyticsPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Category Breakdown */}
-        <div className="bg-white rounded-xl border border-slate-200 p-6">
-          <h2 className="font-bold text-slate-800 mb-4 flex items-center gap-2">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+          <h2 className="font-bold text-slate-800 dark:text-slate-100 mb-4 flex items-center gap-2">
             <PieChart size={18} className="text-purple-500" />
             カテゴリ別売上構成
           </h2>
@@ -274,8 +274,8 @@ export default function AnalyticsPage() {
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
-                  <p className="text-lg font-bold text-slate-800">20</p>
-                  <p className="text-xs text-slate-400">商品</p>
+                  <p className="text-lg font-bold text-slate-800 dark:text-slate-100">20</p>
+                  <p className="text-xs text-slate-400 dark:text-slate-500">商品</p>
                 </div>
               </div>
             </div>
@@ -283,8 +283,8 @@ export default function AnalyticsPage() {
               {categoryBreakdown.slice(0, 5).map((cat) => (
                 <div key={cat.category} className="flex items-center gap-2">
                   <div className={`w-3 h-3 rounded-full ${cat.color}`} />
-                  <span className="text-xs text-slate-600 flex-1 truncate">{cat.category}</span>
-                  <span className="text-xs font-bold text-slate-800">{cat.share}%</span>
+                  <span className="text-xs text-slate-600 dark:text-slate-300 flex-1 truncate">{cat.category}</span>
+                  <span className="text-xs font-bold text-slate-800 dark:text-slate-100">{cat.share}%</span>
                 </div>
               ))}
             </div>
@@ -293,18 +293,18 @@ export default function AnalyticsPage() {
             {categoryBreakdown.map((cat) => (
               <div key={cat.category} className="flex items-center gap-3">
                 <div className={`w-2.5 h-2.5 rounded-full ${cat.color} shrink-0`} />
-                <span className="text-sm text-slate-700 flex-1">{cat.category}</span>
-                <span className="text-xs text-slate-400">{cat.products}品</span>
-                <span className="text-sm font-medium text-slate-800 w-28 text-right">{cat.revenue}</span>
-                <span className="text-xs text-slate-500 w-10 text-right">{cat.share}%</span>
+                <span className="text-sm text-slate-700 dark:text-slate-200 flex-1">{cat.category}</span>
+                <span className="text-xs text-slate-400 dark:text-slate-500">{cat.products}品</span>
+                <span className="text-sm font-medium text-slate-800 dark:text-slate-100 w-28 text-right">{cat.revenue}</span>
+                <span className="text-xs text-slate-500 dark:text-slate-400 w-10 text-right">{cat.share}%</span>
               </div>
             ))}
           </div>
         </div>
 
         {/* Business Type Breakdown */}
-        <div className="bg-white rounded-xl border border-slate-200 p-6">
-          <h2 className="font-bold text-slate-800 mb-4 flex items-center gap-2">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+          <h2 className="font-bold text-slate-800 dark:text-slate-100 mb-4 flex items-center gap-2">
             <BarChart3 size={18} className="text-emerald-500" />
             業態別売上構成
           </h2>
@@ -312,10 +312,10 @@ export default function AnalyticsPage() {
             {businessTypeData.map((bt) => (
               <div key={bt.type}>
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-sm text-slate-700">{bt.type}</span>
-                  <span className="text-sm font-bold text-slate-800">{bt.share}%</span>
+                  <span className="text-sm text-slate-700 dark:text-slate-200">{bt.type}</span>
+                  <span className="text-sm font-bold text-slate-800 dark:text-slate-100">{bt.share}%</span>
                 </div>
-                <div className="h-3 bg-slate-100 rounded-full overflow-hidden">
+                <div className="h-3 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-gradient-to-r from-emerald-400 to-emerald-500 rounded-full transition-all"
                     style={{ width: `${bt.share}%` }}
@@ -327,25 +327,25 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Product Performance */}
-        <div className="bg-white rounded-xl border border-slate-200 p-6">
-          <h2 className="font-bold text-slate-800 mb-4 flex items-center gap-2">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+          <h2 className="font-bold text-slate-800 dark:text-slate-100 mb-4 flex items-center gap-2">
             <TrendingUp size={18} className="text-emerald-500" />
             商品別実績 TOP10
           </h2>
           <div className="space-y-2">
             {productPerformance.map((pp) => (
-              <div key={pp.name} className="flex items-center gap-3 py-2.5 border-b border-slate-100 last:border-0 hover:bg-slate-50/50 rounded transition-colors">
+              <div key={pp.name} className="flex items-center gap-3 py-2.5 border-b border-slate-100 dark:border-slate-700 last:border-0 hover:bg-slate-50/50 dark:hover:bg-slate-700/50 rounded transition-colors">
                 <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${
-                  pp.rank <= 3 ? "bg-amber-100 text-amber-700" : "bg-slate-100 text-slate-500"
+                  pp.rank <= 3 ? "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400" : "bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400"
                 }`}>
                   {pp.rank}
                 </span>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-slate-800 truncate">{pp.name}</p>
-                  <p className="text-xs text-slate-400">{pp.revenue}</p>
+                  <p className="text-sm font-medium text-slate-800 dark:text-slate-100 truncate">{pp.name}</p>
+                  <p className="text-xs text-slate-400 dark:text-slate-500">{pp.revenue}</p>
                 </div>
                 <div className={`flex items-center gap-1 text-sm font-bold ${
-                  pp.growth >= 10 ? "text-emerald-600" : pp.growth > 0 ? "text-slate-600" : "text-slate-400"
+                  pp.growth >= 10 ? "text-emerald-600 dark:text-emerald-400" : pp.growth > 0 ? "text-slate-600 dark:text-slate-300" : "text-slate-400 dark:text-slate-500"
                 }`}>
                   {pp.growth >= 10 ? <TrendingUp size={14} /> : pp.growth > 0 ? <Minus size={14} /> : <TrendingDown size={14} />}
                   {pp.growth > 0 ? "+" : ""}{pp.growth}%
@@ -356,8 +356,8 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Seasonal Insights */}
-        <div className="bg-white rounded-xl border border-slate-200 p-6">
-          <h2 className="font-bold text-slate-800 mb-4 flex items-center gap-2">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+          <h2 className="font-bold text-slate-800 dark:text-slate-100 mb-4 flex items-center gap-2">
             <Calendar size={18} className="text-amber-500" />
             季節別傾向（AIインサイト）
           </h2>
@@ -365,17 +365,17 @@ export default function AnalyticsPage() {
             {seasonalInsights.map((si) => (
               <div key={si.season} className={`bg-gradient-to-r ${si.color} rounded-xl p-4 border`}>
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-bold text-sm text-slate-800 flex items-center gap-2">
+                  <h3 className="font-bold text-sm text-slate-800 dark:text-slate-100 flex items-center gap-2">
                     <span>{si.icon}</span> {si.season}
                   </h3>
-                  <span className="text-xs bg-white/80 text-slate-600 px-2 py-0.5 rounded-full font-medium">
+                  <span className="text-xs bg-white/80 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded-full font-medium">
                     {si.kpi}
                   </span>
                 </div>
-                <p className="text-sm text-slate-600 mb-3">{si.insight}</p>
+                <p className="text-sm text-slate-600 dark:text-slate-300 mb-3">{si.insight}</p>
                 <div className="flex flex-wrap gap-1.5">
                   {si.topProducts.map((p) => (
-                    <span key={p} className="text-xs bg-white/60 text-slate-700 px-2 py-1 rounded-lg font-medium">
+                    <span key={p} className="text-xs bg-white/60 dark:bg-slate-800/60 text-slate-700 dark:text-slate-200 px-2 py-1 rounded-lg font-medium">
                       {p}
                     </span>
                   ))}

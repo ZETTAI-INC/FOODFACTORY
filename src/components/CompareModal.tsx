@@ -20,17 +20,17 @@ export default function CompareModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-auto shadow-2xl">
+      <div className="bg-white dark:bg-slate-800 rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-auto shadow-2xl">
         {/* Header */}
-        <div className="sticky top-0 bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between z-10 rounded-t-2xl">
-          <h2 className="text-lg font-bold text-slate-800">
+        <div className="sticky top-0 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 px-6 py-4 flex items-center justify-between z-10 rounded-t-2xl">
+          <h2 className="text-lg font-bold text-slate-800 dark:text-slate-100">
             商品比較（{products.length}商品）
           </h2>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
+            className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
           >
-            <X size={20} className="text-slate-500" />
+            <X size={20} className="text-slate-500 dark:text-slate-400" />
           </button>
         </div>
 
@@ -38,7 +38,7 @@ export default function CompareModal({
           <table className="w-full">
             <thead>
               <tr>
-                <th className="text-left text-sm font-medium text-slate-500 pb-4 pr-4 w-36" />
+                <th className="text-left text-sm font-medium text-slate-500 dark:text-slate-400 pb-4 pr-4 w-36" />
                 {products.map((p) => (
                   <th key={p.id} className="text-center pb-4 px-4 min-w-[200px]">
                     <ProductImage
@@ -46,7 +46,7 @@ export default function CompareModal({
                       size="sm"
                       className="w-16 h-16 rounded-xl mx-auto mb-2"
                     />
-                    <p className="font-bold text-slate-800 text-sm">
+                    <p className="font-bold text-slate-800 dark:text-slate-100 text-sm">
                       {p.name}
                     </p>
                     <p className="text-xs text-slate-400 font-mono">
@@ -58,20 +58,20 @@ export default function CompareModal({
             </thead>
             <tbody className="text-sm">
               {/* Category */}
-              <tr className="border-t border-slate-100">
-                <td className="py-3 pr-4 font-medium text-slate-500">
+              <tr className="border-t border-slate-100 dark:border-slate-700">
+                <td className="py-3 pr-4 font-medium text-slate-500 dark:text-slate-400">
                   カテゴリ
                 </td>
                 {products.map((p) => (
-                  <td key={p.id} className="py-3 px-4 text-center text-slate-700">
+                  <td key={p.id} className="py-3 px-4 text-center text-slate-700 dark:text-slate-300">
                     {p.category}
                   </td>
                 ))}
               </tr>
 
               {/* Specs */}
-              <tr className="border-t border-slate-100 bg-slate-50/50">
-                <td className="py-3 pr-4 font-medium text-slate-500">
+              <tr className="border-t border-slate-100 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-700/30">
+                <td className="py-3 pr-4 font-medium text-slate-500 dark:text-slate-400">
                   規格展開
                 </td>
                 {products.map((p) => (
@@ -91,10 +91,10 @@ export default function CompareModal({
               </tr>
 
               {/* Features */}
-              <tr className="border-t border-slate-100">
-                <td className="py-3 pr-4 font-medium text-slate-500">特徴</td>
+              <tr className="border-t border-slate-100 dark:border-slate-700">
+                <td className="py-3 pr-4 font-medium text-slate-500 dark:text-slate-400">特徴</td>
                 {products.map((p) => (
-                  <td key={p.id} className="py-3 px-4 text-center text-slate-700">
+                  <td key={p.id} className="py-3 px-4 text-center text-slate-700 dark:text-slate-300">
                     <ul className="space-y-1">
                       {p.features.map((f) => (
                         <li key={f} className="text-xs">{f}</li>
@@ -105,8 +105,8 @@ export default function CompareModal({
               </tr>
 
               {/* Business Types */}
-              <tr className="border-t border-slate-100 bg-slate-50/50">
-                <td className="py-3 pr-4 font-medium text-slate-500">
+              <tr className="border-t border-slate-100 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-700/30">
+                <td className="py-3 pr-4 font-medium text-slate-500 dark:text-slate-400">
                   対象業態
                 </td>
                 {products.map((p) => (
@@ -139,14 +139,14 @@ export default function CompareModal({
               </tr>
 
               {/* Cooking Method */}
-              <tr className="border-t border-slate-100">
-                <td className="py-3 pr-4 font-medium text-slate-500">
+              <tr className="border-t border-slate-100 dark:border-slate-700">
+                <td className="py-3 pr-4 font-medium text-slate-500 dark:text-slate-400">
                   調理方法
                 </td>
                 {products.map((p) => (
                   <td
                     key={p.id}
-                    className="py-3 px-4 text-center text-xs text-slate-600"
+                    className="py-3 px-4 text-center text-xs text-slate-600 dark:text-slate-400"
                   >
                     {p.usageMethod}
                   </td>
@@ -154,14 +154,14 @@ export default function CompareModal({
               </tr>
 
               {/* Sales Trend */}
-              <tr className="border-t border-slate-100 bg-slate-50/50">
-                <td className="py-3 pr-4 font-medium text-slate-500">
+              <tr className="border-t border-slate-100 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-700/30">
+                <td className="py-3 pr-4 font-medium text-slate-500 dark:text-slate-400">
                   販売傾向
                 </td>
                 {products.map((p) => (
                   <td
                     key={p.id}
-                    className="py-3 px-4 text-center text-xs text-slate-600"
+                    className="py-3 px-4 text-center text-xs text-slate-600 dark:text-slate-400"
                   >
                     {p.salesTrend}
                   </td>
@@ -169,14 +169,14 @@ export default function CompareModal({
               </tr>
 
               {/* Seasonality */}
-              <tr className="border-t border-slate-100">
-                <td className="py-3 pr-4 font-medium text-slate-500">
+              <tr className="border-t border-slate-100 dark:border-slate-700">
+                <td className="py-3 pr-4 font-medium text-slate-500 dark:text-slate-400">
                   季節性
                 </td>
                 {products.map((p) => (
                   <td
                     key={p.id}
-                    className="py-3 px-4 text-center text-xs text-slate-600"
+                    className="py-3 px-4 text-center text-xs text-slate-600 dark:text-slate-400"
                   >
                     {p.seasonality}
                   </td>
@@ -184,7 +184,7 @@ export default function CompareModal({
               </tr>
 
               {/* Appeal Points */}
-              <tr className="border-t border-slate-100 bg-blue-50/30">
+              <tr className="border-t border-slate-100 dark:border-slate-700 bg-blue-50/30">
                 <td className="py-3 pr-4 font-medium text-blue-600">
                   訴求ポイント
                 </td>

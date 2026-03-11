@@ -59,7 +59,7 @@ export default function ExportButton({
         className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all ${
           exported
             ? "bg-emerald-600 text-white"
-            : "bg-white text-slate-700 border border-slate-200 hover:bg-slate-50"
+            : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700"
         }`}
       >
         {exported ? <Check size={16} /> : <Download size={16} />}
@@ -69,10 +69,10 @@ export default function ExportButton({
       {showMenu && (
         <>
           <div className="fixed inset-0 z-40" onClick={() => setShowMenu(false)} />
-          <div className="absolute right-0 top-full mt-2 bg-white rounded-xl border border-slate-200 shadow-xl z-50 overflow-hidden min-w-[180px] animate-scale-in">
+          <div className="absolute right-0 top-full mt-2 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-xl z-50 overflow-hidden min-w-[180px] animate-scale-in">
             <button
               onClick={() => exportData("csv")}
-              className="flex items-center gap-3 w-full px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 transition-colors"
+              className="flex items-center gap-3 w-full px-4 py-3 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
             >
               <FileSpreadsheet size={16} className="text-emerald-500" />
               <div className="text-left">
@@ -82,7 +82,7 @@ export default function ExportButton({
             </button>
             <button
               onClick={() => exportData("tsv")}
-              className="flex items-center gap-3 w-full px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 transition-colors border-t border-slate-100"
+              className="flex items-center gap-3 w-full px-4 py-3 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors border-t border-slate-100 dark:border-slate-700"
             >
               <FileText size={16} className="text-blue-500" />
               <div className="text-left">

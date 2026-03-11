@@ -20,19 +20,19 @@ const config = {
   normal: {
     icon: CheckCircle,
     label: "在庫あり",
-    className: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    className: "bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800",
     iconClass: "text-emerald-500",
   },
   low: {
     icon: Clock,
     label: "在庫少",
-    className: "bg-amber-50 text-amber-700 border-amber-200",
+    className: "bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-800",
     iconClass: "text-amber-500",
   },
   out: {
     icon: AlertTriangle,
     label: "在庫切れ",
-    className: "bg-red-50 text-red-700 border-red-200",
+    className: "bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 border-red-200 dark:border-red-800",
     iconClass: "text-red-500",
   },
 };

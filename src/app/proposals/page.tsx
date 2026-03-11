@@ -21,7 +21,7 @@ import ProductImage from "@/components/ProductImage";
 
 export default function ProposalsPage() {
   return (
-    <Suspense fallback={<div className="text-center py-16 text-slate-400">読み込み中...</div>}>
+    <Suspense fallback={<div className="text-center py-16 text-slate-400 dark:text-slate-500">読み込み中...</div>}>
       <ProposalsContent />
     </Suspense>
   );
@@ -258,8 +258,8 @@ ${product.menuSuggestions.map((m) => `- **春の${m}** - 旬の野菜を添え�
   return (
     <div className="max-w-5xl mx-auto space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-slate-800">提案書作成</h1>
-        <p className="text-slate-500 mt-1">AIが商品情報を元に営業提案書を自動生成します</p>
+        <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100">提案書作成</h1>
+        <p className="text-slate-500 mt-1 dark:text-slate-400">AIが商品情報を元に営業提案書を自動生成します</p>
       </div>
 
       {/* Template Selection */}
@@ -272,35 +272,35 @@ ${product.menuSuggestions.map((m) => `- **春の${m}** - 旬の野菜を添え�
               onClick={() => setSelectedTemplate(tmpl.id)}
               className={`text-left p-4 rounded-xl border transition-all ${
                 selectedTemplate === tmpl.id
-                  ? "border-blue-400 bg-blue-50 ring-2 ring-blue-100"
-                  : "border-slate-200 bg-white hover:border-slate-300 hover:shadow-sm"
+                  ? "border-blue-400 bg-blue-50 dark:bg-blue-900/20 ring-2 ring-blue-100 dark:ring-blue-800"
+                  : "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-sm"
               }`}
             >
-              <Icon size={20} className={selectedTemplate === tmpl.id ? "text-blue-600 mb-2" : "text-slate-400 mb-2"} />
-              <p className={`text-sm font-bold ${selectedTemplate === tmpl.id ? "text-blue-700" : "text-slate-700"}`}>
+              <Icon size={20} className={selectedTemplate === tmpl.id ? "text-blue-600 dark:text-blue-400 mb-2" : "text-slate-400 dark:text-slate-500 mb-2"} />
+              <p className={`text-sm font-bold ${selectedTemplate === tmpl.id ? "text-blue-700 dark:text-blue-300" : "text-slate-700 dark:text-slate-200"}`}>
                 {tmpl.label}
               </p>
-              <p className="text-xs text-slate-500 mt-1">{tmpl.desc}</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{tmpl.desc}</p>
             </button>
           );
         })}
       </div>
 
       {/* Generator Form */}
-      <div className="bg-white rounded-xl border border-slate-200 p-6">
-        <h2 className="font-bold text-slate-800 mb-4 flex items-center gap-2">
+      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+        <h2 className="font-bold text-slate-800 dark:text-slate-100 mb-4 flex items-center gap-2">
           <Sparkles size={18} className="text-blue-500" />
           提案内容を設定
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <div>
-            <label className="text-sm font-medium text-slate-700 mb-2 block">
+            <label className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 block">
               <ChefHat size={14} className="inline mr-1" /> 商品を選択
             </label>
             <select
               value={selectedProduct}
               onChange={(e) => setSelectedProduct(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm bg-white cursor-pointer focus:border-blue-400 focus:ring-2 focus:ring-blue-100 outline-none"
+              className="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 text-sm bg-white dark:bg-slate-800 dark:text-slate-200 cursor-pointer focus:border-blue-400 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-800 outline-none"
             >
               <option value="">商品を選択してください</option>
               {products.map((p) => (
@@ -309,13 +309,13 @@ ${product.menuSuggestions.map((m) => `- **春の${m}** - 旬の野菜を添え�
             </select>
           </div>
           <div>
-            <label className="text-sm font-medium text-slate-700 mb-2 block">
+            <label className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 block">
               <Building2 size={14} className="inline mr-1" /> 提案先の業態
             </label>
             <select
               value={selectedBusiness}
               onChange={(e) => setSelectedBusiness(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm bg-white cursor-pointer focus:border-blue-400 focus:ring-2 focus:ring-blue-100 outline-none"
+              className="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 text-sm bg-white dark:bg-slate-800 dark:text-slate-200 cursor-pointer focus:border-blue-400 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-800 outline-none"
             >
               <option value="">業態を選択してください</option>
               {businessTypes.map((b) => (
@@ -327,15 +327,15 @@ ${product.menuSuggestions.map((m) => `- **春の${m}** - 旬の野菜を添え�
 
         {/* Selected product preview */}
         {selectedProductData && (
-          <div className="bg-slate-50 rounded-lg p-4 mb-4 flex items-center gap-4">
+          <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4 mb-4 flex items-center gap-4">
             <ProductImage code={selectedProductData.code} size="sm" className="w-12 h-12 rounded-lg" />
             <div className="flex-1">
-              <p className="text-sm font-bold text-slate-800">{selectedProductData.name}</p>
-              <p className="text-xs text-slate-500">{selectedProductData.category} / {selectedProductData.specs.join(", ")}</p>
+              <p className="text-sm font-bold text-slate-800 dark:text-slate-100">{selectedProductData.name}</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400">{selectedProductData.category} / {selectedProductData.specs.join(", ")}</p>
             </div>
             <div className="flex flex-wrap gap-1">
               {selectedProductData.features.map((f) => (
-                <span key={f} className="text-xs bg-white text-slate-600 px-2 py-0.5 rounded">{f}</span>
+                <span key={f} className="text-xs bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded">{f}</span>
               ))}
             </div>
           </div>
@@ -345,7 +345,7 @@ ${product.menuSuggestions.map((m) => `- **春の${m}** - 旬の野菜を添え�
           <button
             onClick={generateProposal}
             disabled={!selectedProduct || !selectedBusiness || isGenerating}
-            className="bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 text-white px-6 py-3 rounded-lg transition-colors flex items-center gap-2 text-sm font-medium shadow-sm"
+            className="bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 dark:disabled:bg-slate-600 text-white px-6 py-3 rounded-lg transition-colors flex items-center gap-2 text-sm font-medium shadow-sm"
           >
             {isGenerating ? <RefreshCw size={16} className="animate-spin" /> : <Sparkles size={16} />}
             {isGenerating ? "生成中..." : "提案書を生成する"}
@@ -353,7 +353,7 @@ ${product.menuSuggestions.map((m) => `- **春の${m}** - 旬の野菜を添え�
           {proposal && (
             <button
               onClick={() => { setProposal(""); generateProposal(); }}
-              className="bg-white hover:bg-slate-50 text-slate-600 px-4 py-3 rounded-lg transition-colors flex items-center gap-2 text-sm border border-slate-200"
+              className="bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 px-4 py-3 rounded-lg transition-colors flex items-center gap-2 text-sm border border-slate-200 dark:border-slate-700"
             >
               <RefreshCw size={16} />
               再生成
@@ -364,19 +364,19 @@ ${product.menuSuggestions.map((m) => `- **春の${m}** - 旬の野菜を添え�
 
       {/* Generated Proposal */}
       {proposal && (
-        <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm animate-fade-in">
-          <div className="bg-slate-50 border-b border-slate-200 px-6 py-4 flex items-center justify-between">
-            <h2 className="font-bold text-slate-800 flex items-center gap-2">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm animate-fade-in">
+          <div className="bg-slate-50 dark:bg-slate-700/50 border-b border-slate-200 dark:border-slate-700 px-6 py-4 flex items-center justify-between">
+            <h2 className="font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
               <FileText size={18} className="text-emerald-500" />
               生成された提案書
-              <span className="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full font-normal">
+              <span className="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded-full font-normal">
                 {templates.find((t) => t.id === selectedTemplate)?.label}
               </span>
             </h2>
             <div className="flex gap-2">
               <button
                 onClick={handleCopy}
-                className="flex items-center gap-2 px-4 py-2 text-sm text-slate-600 hover:text-slate-800 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors"
+                className="flex items-center gap-2 px-4 py-2 text-sm text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-100 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
               >
                 {copied ? <><Check size={14} className="text-emerald-500" /> コピー済み</> : <><Copy size={14} /> コピー</>}
               </button>
@@ -387,7 +387,7 @@ ${product.menuSuggestions.map((m) => `- **春の${m}** - 旬の野菜を添え�
           </div>
           <div className="p-8">
             <div
-              className="prose prose-sm max-w-none text-slate-700"
+              className="prose prose-sm max-w-none text-slate-700 dark:text-slate-300"
               dangerouslySetInnerHTML={{
                 __html: proposal
                   .replace(/^# (.+)$/gm, '<h1 class="text-2xl font-bold text-slate-800 mb-6 pb-4 border-b-2 border-blue-100">$1</h1>')
@@ -415,9 +415,9 @@ ${product.menuSuggestions.map((m) => `- **春の${m}** - 旬の野菜を添え�
 
       {/* Tips */}
       {!proposal && (
-        <div className="bg-blue-50 border border-blue-100 rounded-xl p-6">
-          <h3 className="font-bold text-blue-800 mb-3">提案書作成のヒント</h3>
-          <ul className="space-y-2 text-sm text-blue-700">
+        <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-slate-700 rounded-xl p-6">
+          <h3 className="font-bold text-blue-800 dark:text-blue-200 mb-3">提案書作成のヒント</h3>
+          <ul className="space-y-2 text-sm text-blue-700 dark:text-blue-300">
             <li>- **標準提案書**: 初回訪問や一般的な商品紹介に最適</li>
             <li>- **メニュー提案書**: 飲食店向けに具体的なメニュー案と価格設定を提示</li>
             <li>- **比較提案書**: 競合品との差別化ポイントやコスト比較を提示</li>

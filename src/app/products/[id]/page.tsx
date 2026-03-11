@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useState } from "react";
+import { use, useState, useEffect } from "react";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -10,7 +10,7 @@ import {
   Clock,
   QrCode,
   Share2,
-  Bookmark,
+  Heart,
   FileText,
   Copy,
   Check,
@@ -20,6 +20,8 @@ import { getProductById, getRelatedProducts } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
 import ProductImage from "@/components/ProductImage";
 import StockBadge from "@/components/StockBadge";
+import { useFavorites } from "@/components/FavoritesProvider";
+import { useToast } from "@/components/Toast";
 
 export default function ProductDetailPage({
   params,
@@ -30,7 +32,19 @@ export default function ProductDetailPage({
   const product = getProductById(id);
   const [activeTab, setActiveTab] = useState<"overview" | "sales" | "proposal">("overview");
   const [copied, setCopied] = useState(false);
-  const [bookmarked, setBookmarked] = useState(false);
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const { toast } = useToast();
+
+  // Track recently viewed products
+  useEffect(() => {
+    if (!product) return;
+    try {
+      const stored = localStorage.getItem("recentlyViewed");
+      const recent: string[] = stored ? JSON.parse(stored) : [];
+      const updated = [product.id, ...recent.filter((rid) => rid !== product.id)].slice(0, 10);
+      localStorage.setItem("recentlyViewed", JSON.stringify(updated));
+    } catch { /* ignore */ }
+  }, [product]);
 
   if (!product) {
     return (
@@ -54,14 +68,19 @@ export default function ProductDetailPage({
         </Link>
         <div className="flex items-center gap-2">
           <button
-            onClick={() => setBookmarked(!bookmarked)}
+            onClick={() => {
+              if (!product) return;
+              const willBeFav = !isFavorite(product.id);
+              toggleFavorite(product.id);
+              toast(willBeFav ? `${product.name}をお気に入りに追加しました` : `${product.name}をお気に入りから削除しました`);
+            }}
             className={`p-1.5 rounded-md border transition-colors ${
-              bookmarked
-                ? "bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-700 text-amber-500"
+              product && isFavorite(product.id)
+                ? "bg-rose-50 dark:bg-rose-900/20 border-rose-200 dark:border-rose-700 text-rose-500"
                 : "bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-400 hover:text-slate-600"
             }`}
           >
-            <Bookmark size={14} fill={bookmarked ? "currentColor" : "none"} />
+            <Heart size={14} fill={product && isFavorite(product.id) ? "currentColor" : "none"} />
           </button>
           <button
             onClick={() => { navigator.clipboard.writeText(window.location.href); setCopied(true); setTimeout(() => setCopied(false), 2000); }}

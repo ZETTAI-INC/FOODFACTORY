@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import { Heart } from "lucide-react";
 import type { Product } from "@/data/products";
 import ProductImage from "./ProductImage";
+import { useFavorites } from "./FavoritesProvider";
 
 export default function ProductCard({
   product,
@@ -15,9 +17,12 @@ export default function ProductCard({
   selected?: boolean;
   onSelect?: (id: string) => void;
 }) {
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const fav = isFavorite(product.id);
+
   const card = (
     <div
-      className={`bg-white dark:bg-slate-800 rounded-lg border transition-all group cursor-pointer ${
+      className={`bg-white dark:bg-slate-800 rounded-lg border transition-all group cursor-pointer relative ${
         selected
           ? "border-blue-500 ring-1 ring-blue-200 dark:ring-blue-800"
           : "border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-sm"
@@ -29,6 +34,18 @@ export default function ProductCard({
         size="md"
         className="rounded-t-lg"
       />
+
+      {/* Favorite button */}
+      <button
+        onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleFavorite(product.id); }}
+        className={`absolute top-2 right-2 p-1.5 rounded-full transition-all ${
+          fav
+            ? "bg-rose-50 dark:bg-rose-900/30 text-rose-500"
+            : "bg-white/80 dark:bg-slate-800/80 text-slate-300 dark:text-slate-500 opacity-0 group-hover:opacity-100"
+        }`}
+      >
+        <Heart size={14} fill={fav ? "currentColor" : "none"} />
+      </button>
 
       <div className="p-4">
         <div className="flex items-center justify-between mb-2">

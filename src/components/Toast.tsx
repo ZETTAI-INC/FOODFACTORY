@@ -35,9 +35,9 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   };
 
   const borders = {
-    success: "border-emerald-200 bg-emerald-50",
-    error: "border-red-200 bg-red-50",
-    info: "border-blue-200 bg-blue-50",
+    success: "border-emerald-200 bg-emerald-50 dark:border-emerald-800 dark:bg-emerald-900/50",
+    error: "border-red-200 bg-red-50 dark:border-red-800 dark:bg-red-900/50",
+    info: "border-blue-200 bg-blue-50 dark:border-blue-800 dark:bg-blue-900/50",
   };
 
   return (
@@ -50,8 +50,8 @@ export function ToastProvider({ children }: { children: ReactNode }) {
             className={`flex items-center gap-3 px-4 py-3 rounded-xl border shadow-lg backdrop-blur-sm animate-slide-up ${borders[t.type]}`}
           >
             {icons[t.type]}
-            <span className="text-sm font-medium text-slate-800">{t.message}</span>
-            <button onClick={() => dismiss(t.id)} className="ml-2 text-slate-400 hover:text-slate-600">
+            <span className="text-sm font-medium text-slate-800 dark:text-slate-100">{t.message}</span>
+            <button onClick={() => dismiss(t.id)} className="ml-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300">
               <X size={14} />
             </button>
           </div>

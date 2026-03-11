@@ -29,7 +29,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
         <Sidebar />
         <div className="flex-1 min-w-0">
           <Header onOpenCommandPalette={() => setCommandPaletteOpen(true)} />
-          <main className="p-4 md:p-8">{children}</main>
+          <main className="p-4 md:p-8 animate-fade-in">{children}</main>
         </div>
       </div>
       <KeyboardShortcuts />

@@ -173,12 +173,12 @@ function formatDate(dateStr: string): string {
 }
 
 const productColors = [
-  "bg-blue-50 text-blue-700 border-blue-200",
-  "bg-emerald-50 text-emerald-700 border-emerald-200",
-  "bg-purple-50 text-purple-700 border-purple-200",
-  "bg-amber-50 text-amber-700 border-amber-200",
-  "bg-rose-50 text-rose-700 border-rose-200",
-  "bg-cyan-50 text-cyan-700 border-cyan-200",
+  "bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800",
+  "bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800",
+  "bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-800",
+  "bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800",
+  "bg-rose-50 dark:bg-rose-900/20 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-800",
+  "bg-cyan-50 dark:bg-cyan-900/20 text-cyan-700 dark:text-cyan-300 border-cyan-200 dark:border-cyan-800",
 ];
 
 export default function CustomerDetailPage({
@@ -192,10 +192,10 @@ export default function CustomerDetailPage({
   if (!customer) {
     return (
       <div className="text-center py-16">
-        <p className="text-slate-400 text-lg">顧客が見つかりません</p>
+        <p className="text-slate-400 dark:text-slate-500 text-lg">顧客が見つかりません</p>
         <Link
           href="/customers"
-          className="text-blue-600 text-sm mt-2 inline-block"
+          className="text-blue-600 dark:text-blue-400 text-sm mt-2 inline-block"
         >
           顧客一覧に戻る
         </Link>
@@ -207,10 +207,10 @@ export default function CustomerDetailPage({
     <div className="space-y-8">
       {/* Breadcrumb */}
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2 text-sm text-slate-500">
+        <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
           <Link
             href="/customers"
-            className="flex items-center gap-1 text-blue-600 hover:text-blue-700"
+            className="flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
           >
             <ArrowLeft size={14} /> 顧客管理
           </Link>
@@ -222,19 +222,19 @@ export default function CustomerDetailPage({
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <div className="bg-slate-100 rounded-xl p-4">
-            <Building2 size={28} className="text-slate-600" />
+          <div className="bg-slate-100 dark:bg-slate-700 rounded-xl p-4">
+            <Building2 size={28} className="text-slate-600 dark:text-slate-300" />
           </div>
           <div>
             <div className="flex items-center gap-3">
-              <h1 className="text-2xl font-bold text-slate-800">
+              <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100">
                 {customer.name}
               </h1>
               <span
                 className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${
                   customer.status === "active"
-                    ? "bg-emerald-50 text-emerald-700"
-                    : "bg-slate-100 text-slate-500"
+                    ? "bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300"
+                    : "bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400"
                 }`}
               >
                 <span
@@ -247,7 +247,7 @@ export default function CustomerDetailPage({
                 {customer.status === "active" ? "アクティブ" : "休止"}
               </span>
             </div>
-            <p className="text-slate-500 mt-1">{customer.type} / {customer.area}</p>
+            <p className="text-slate-500 dark:text-slate-400 mt-1">{customer.type} / {customer.area}</p>
           </div>
         </div>
         <button className="flex items-center gap-2 px-4 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
@@ -259,74 +259,74 @@ export default function CustomerDetailPage({
       {/* Grid: Info + Stats */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left: Customer Info */}
-        <div className="lg:col-span-2 bg-white rounded-xl border border-slate-200 p-6">
-          <h2 className="font-bold text-slate-800 mb-5 flex items-center gap-2">
-            <User size={18} className="text-slate-500" />
+        <div className="lg:col-span-2 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+          <h2 className="font-bold text-slate-800 dark:text-slate-100 mb-5 flex items-center gap-2">
+            <User size={18} className="text-slate-500 dark:text-slate-400" />
             顧客情報
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div className="flex items-start gap-3">
-              <div className="bg-blue-50 rounded-lg p-2 mt-0.5">
-                <User size={16} className="text-blue-600" />
+              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-2 mt-0.5">
+                <User size={16} className="text-blue-600 dark:text-blue-400" />
               </div>
               <div>
-                <p className="text-xs text-slate-400">担当者</p>
-                <p className="text-sm font-medium text-slate-800">
+                <p className="text-xs text-slate-400 dark:text-slate-500">担当者</p>
+                <p className="text-sm font-medium text-slate-800 dark:text-slate-100">
                   {customer.contact}
                 </p>
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <div className="bg-emerald-50 rounded-lg p-2 mt-0.5">
-                <Phone size={16} className="text-emerald-600" />
+              <div className="bg-emerald-50 dark:bg-emerald-900/20 rounded-lg p-2 mt-0.5">
+                <Phone size={16} className="text-emerald-600 dark:text-emerald-400" />
               </div>
               <div>
-                <p className="text-xs text-slate-400">電話番号</p>
-                <p className="text-sm font-medium text-slate-800">
+                <p className="text-xs text-slate-400 dark:text-slate-500">電話番号</p>
+                <p className="text-sm font-medium text-slate-800 dark:text-slate-100">
                   {customer.phone}
                 </p>
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <div className="bg-purple-50 rounded-lg p-2 mt-0.5">
-                <Mail size={16} className="text-purple-600" />
+              <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-2 mt-0.5">
+                <Mail size={16} className="text-purple-600 dark:text-purple-400" />
               </div>
               <div>
-                <p className="text-xs text-slate-400">メールアドレス</p>
-                <p className="text-sm font-medium text-slate-800">
+                <p className="text-xs text-slate-400 dark:text-slate-500">メールアドレス</p>
+                <p className="text-sm font-medium text-slate-800 dark:text-slate-100">
                   {customer.email}
                 </p>
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <div className="bg-amber-50 rounded-lg p-2 mt-0.5">
-                <MapPin size={16} className="text-amber-600" />
+              <div className="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-2 mt-0.5">
+                <MapPin size={16} className="text-amber-600 dark:text-amber-400" />
               </div>
               <div>
-                <p className="text-xs text-slate-400">エリア</p>
-                <p className="text-sm font-medium text-slate-800">
+                <p className="text-xs text-slate-400 dark:text-slate-500">エリア</p>
+                <p className="text-sm font-medium text-slate-800 dark:text-slate-100">
                   {customer.area}
                 </p>
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <div className="bg-cyan-50 rounded-lg p-2 mt-0.5">
-                <Calendar size={16} className="text-cyan-600" />
+              <div className="bg-cyan-50 dark:bg-cyan-900/20 rounded-lg p-2 mt-0.5">
+                <Calendar size={16} className="text-cyan-600 dark:text-cyan-400" />
               </div>
               <div>
-                <p className="text-xs text-slate-400">取引開始</p>
-                <p className="text-sm font-medium text-slate-800">
+                <p className="text-xs text-slate-400 dark:text-slate-500">取引開始</p>
+                <p className="text-sm font-medium text-slate-800 dark:text-slate-100">
                   {customer.since}
                 </p>
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <div className="bg-rose-50 rounded-lg p-2 mt-0.5">
-                <Building2 size={16} className="text-rose-600" />
+              <div className="bg-rose-50 dark:bg-rose-900/20 rounded-lg p-2 mt-0.5">
+                <Building2 size={16} className="text-rose-600 dark:text-rose-400" />
               </div>
               <div>
-                <p className="text-xs text-slate-400">ステータス</p>
-                <p className="text-sm font-medium text-slate-800">
+                <p className="text-xs text-slate-400 dark:text-slate-500">ステータス</p>
+                <p className="text-sm font-medium text-slate-800 dark:text-slate-100">
                   {customer.status === "active" ? "アクティブ" : "休止"}
                 </p>
               </div>
@@ -336,35 +336,35 @@ export default function CustomerDetailPage({
 
         {/* Right: Stats */}
         <div className="space-y-4">
-          <div className="bg-white rounded-xl border border-slate-200 p-5 flex items-center gap-4">
-            <div className="bg-blue-50 rounded-lg p-3">
-              <TrendingUp size={22} className="text-blue-600" />
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-5 flex items-center gap-4">
+            <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3">
+              <TrendingUp size={22} className="text-blue-600 dark:text-blue-400" />
             </div>
             <div>
-              <p className="text-xs text-slate-400">月間発注額</p>
-              <p className="text-xl font-bold text-slate-800">
+              <p className="text-xs text-slate-400 dark:text-slate-500">月間発注額</p>
+              <p className="text-xl font-bold text-slate-800 dark:text-slate-100">
                 {customer.monthlyOrder}
               </p>
             </div>
           </div>
-          <div className="bg-white rounded-xl border border-slate-200 p-5 flex items-center gap-4">
-            <div className="bg-emerald-50 rounded-lg p-3">
-              <Package size={22} className="text-emerald-600" />
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-5 flex items-center gap-4">
+            <div className="bg-emerald-50 dark:bg-emerald-900/20 rounded-lg p-3">
+              <Package size={22} className="text-emerald-600 dark:text-emerald-400" />
             </div>
             <div>
-              <p className="text-xs text-slate-400">採用商品数</p>
-              <p className="text-xl font-bold text-slate-800">
+              <p className="text-xs text-slate-400 dark:text-slate-500">採用商品数</p>
+              <p className="text-xl font-bold text-slate-800 dark:text-slate-100">
                 {customer.adoptedProducts.length}品
               </p>
             </div>
           </div>
-          <div className="bg-white rounded-xl border border-slate-200 p-5 flex items-center gap-4">
-            <div className="bg-purple-50 rounded-lg p-3">
-              <Calendar size={22} className="text-purple-600" />
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-5 flex items-center gap-4">
+            <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-3">
+              <Calendar size={22} className="text-purple-600 dark:text-purple-400" />
             </div>
             <div>
-              <p className="text-xs text-slate-400">取引開始</p>
-              <p className="text-xl font-bold text-slate-800">
+              <p className="text-xs text-slate-400 dark:text-slate-500">取引開始</p>
+              <p className="text-xl font-bold text-slate-800 dark:text-slate-100">
                 {customer.since}
               </p>
             </div>
@@ -373,8 +373,8 @@ export default function CustomerDetailPage({
       </div>
 
       {/* Adopted Products */}
-      <div className="bg-white rounded-xl border border-slate-200 p-6">
-        <h2 className="font-bold text-slate-800 mb-4 flex items-center gap-2">
+      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+        <h2 className="font-bold text-slate-800 dark:text-slate-100 mb-4 flex items-center gap-2">
           <Package size={18} className="text-emerald-500" />
           採用商品
         </h2>
@@ -391,9 +391,9 @@ export default function CustomerDetailPage({
       </div>
 
       {/* Order History */}
-      <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
-        <div className="px-6 py-4 border-b border-slate-200">
-          <h2 className="font-bold text-slate-800 flex items-center gap-2">
+      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+        <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-700">
+          <h2 className="font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
             <Calendar size={18} className="text-blue-500" />
             発注履歴
           </h2>
@@ -401,14 +401,14 @@ export default function CustomerDetailPage({
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-slate-200 bg-slate-50">
-                <th className="text-left px-6 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+              <tr className="border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-700/50">
+                <th className="text-left px-6 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                   日付
                 </th>
-                <th className="text-left px-6 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                <th className="text-left px-6 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                   発注内容
                 </th>
-                <th className="text-right px-6 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                <th className="text-right px-6 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                   金額
                 </th>
               </tr>
@@ -417,15 +417,15 @@ export default function CustomerDetailPage({
               {customer.orderHistory.map((order, i) => (
                 <tr
                   key={i}
-                  className="border-b border-slate-100 last:border-0 hover:bg-blue-50/50 transition-colors"
+                  className="border-b border-slate-100 dark:border-slate-700 last:border-0 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors"
                 >
-                  <td className="px-6 py-4 text-sm text-slate-600 whitespace-nowrap">
+                  <td className="px-6 py-4 text-sm text-slate-600 dark:text-slate-300 whitespace-nowrap">
                     {formatDate(order.date)}
                   </td>
-                  <td className="px-6 py-4 text-sm text-slate-800">
+                  <td className="px-6 py-4 text-sm text-slate-800 dark:text-slate-200">
                     {order.items}
                   </td>
-                  <td className="px-6 py-4 text-sm font-medium text-slate-800 text-right whitespace-nowrap">
+                  <td className="px-6 py-4 text-sm font-medium text-slate-800 dark:text-slate-100 text-right whitespace-nowrap">
                     {order.amount}
                   </td>
                 </tr>
@@ -445,12 +445,12 @@ export default function CustomerDetailPage({
       </div>
 
       {/* Notes */}
-      <div className="bg-white rounded-xl border border-slate-200 p-6">
-        <h2 className="font-bold text-slate-800 mb-3 flex items-center gap-2">
-          <Edit size={18} className="text-slate-500" />
+      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+        <h2 className="font-bold text-slate-800 dark:text-slate-100 mb-3 flex items-center gap-2">
+          <Edit size={18} className="text-slate-500 dark:text-slate-400" />
           メモ・備考
         </h2>
-        <p className="text-sm text-slate-600 leading-relaxed">
+        <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
           {customer.notes}
         </p>
       </div>
