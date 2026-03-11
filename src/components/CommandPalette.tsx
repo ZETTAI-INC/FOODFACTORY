@@ -17,6 +17,9 @@ import {
   ArrowRight,
   Command,
   CornerDownLeft,
+  Handshake,
+  ClipboardList,
+  Truck,
 } from "lucide-react";
 
 type ResultItem = {
@@ -37,8 +40,11 @@ type CommandPaletteProps = {
 const pages = [
   { label: "ダッシュボード", path: "/", icon: LayoutDashboard },
   { label: "商品カタログ", path: "/products", icon: Package },
-  { label: "AI検索", path: "/ai-search", icon: Sparkles },
-  { label: "提案支援", path: "/proposals", icon: FileText },
+  { label: "AI検索", path: "/search", icon: Sparkles },
+  { label: "商談管理", path: "/deals", icon: Handshake },
+  { label: "営業日報", path: "/activities", icon: ClipboardList },
+  { label: "サンプル管理", path: "/samples", icon: Truck },
+  { label: "提案書作成", path: "/proposals", icon: FileText },
   { label: "販売分析", path: "/analytics", icon: BarChart3 },
   { label: "顧客管理", path: "/customers", icon: Users },
   { label: "QR管理", path: "/qr", icon: QrCode },

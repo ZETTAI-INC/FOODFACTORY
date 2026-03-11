@@ -16,13 +16,19 @@ import {
   X,
   PanelLeftClose,
   PanelLeft,
+  Handshake,
+  ClipboardList,
+  Truck,
 } from "lucide-react";
 
 const navItems = [
   { href: "/", label: "ダッシュボード", icon: LayoutDashboard },
   { href: "/products", label: "商品カタログ", icon: Package },
   { href: "/search", label: "AI検索", icon: Search },
-  { href: "/proposals", label: "提案支援", icon: FileText },
+  { href: "/deals", label: "商談管理", icon: Handshake },
+  { href: "/activities", label: "営業日報", icon: ClipboardList },
+  { href: "/samples", label: "サンプル管理", icon: Truck },
+  { href: "/proposals", label: "提案書作成", icon: FileText },
   { href: "/analytics", label: "販売分析", icon: BarChart3 },
   { href: "/customers", label: "顧客管理", icon: Users },
   { href: "/qr", label: "QR管理", icon: QrCode },

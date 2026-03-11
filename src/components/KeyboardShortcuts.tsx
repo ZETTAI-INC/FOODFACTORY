@@ -9,8 +9,8 @@ const shortcuts = [
   { keys: ["⌘", "1"], label: "ダッシュボード", action: "/" },
   { keys: ["⌘", "2"], label: "商品カタログ", action: "/products" },
   { keys: ["⌘", "3"], label: "AI検索", action: "/search" },
-  { keys: ["⌘", "4"], label: "提案支援", action: "/proposals" },
-  { keys: ["⌘", "5"], label: "販売分析", action: "/analytics" },
+  { keys: ["⌘", "4"], label: "商談管理", action: "/deals" },
+  { keys: ["⌘", "5"], label: "営業日報", action: "/activities" },
   { keys: ["⌘", "6"], label: "顧客管理", action: "/customers" },
   { keys: ["?"], label: "ショートカット一覧", action: "help" },
 ];
@@ -52,11 +52,11 @@ export default function KeyboardShortcuts() {
             break;
           case "4":
             e.preventDefault();
-            router.push("/proposals");
+            router.push("/deals");
             break;
           case "5":
             e.preventDefault();
-            router.push("/analytics");
+            router.push("/activities");
             break;
           case "6":
             e.preventDefault();

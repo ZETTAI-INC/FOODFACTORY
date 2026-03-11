@@ -12,24 +12,39 @@ import {
   Clock,
   BarChart3,
   Heart,
+  Handshake,
+  ClipboardList,
+  Truck,
+  AlertCircle,
+  CheckCircle,
+  Phone,
+  Building2,
 } from "lucide-react";
 import { products, getProductById } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
 import { useFavorites } from "@/components/FavoritesProvider";
 
 const stats = [
-  { label: "商品数", value: "20", sub: "7カテゴリ" },
+  { label: "進行中の商談", value: "7", sub: "パイプライン ¥1.67M" },
   { label: "月間売上", value: "¥6.2M", sub: "前年比 +7%" },
+  { label: "今月のサンプル", value: "15", sub: "採用率 42%" },
   { label: "アクティブ顧客", value: "98", sub: "+5 今月" },
-  { label: "AI検索利用", value: "2,847", sub: "前月比 +24%" },
+];
+
+const todayActions = [
+  { client: "弁当工房 さくら亭", action: "見積書の送付", type: "商談", overdue: true, icon: FileText },
+  { client: "居酒屋 鳥よし 池袋店", action: "試食結果のヒアリング電話", type: "商談", overdue: false, icon: Phone },
+  { client: "串カツ田中 新橋店", action: "商品カタログ持参して再訪問", type: "営業", overdue: false, icon: Building2 },
+  { client: "カフェ BLOOM 表参道", action: "サンプル到着確認", type: "サンプル", overdue: false, icon: Truck },
+  { client: "焼肉ダイニング WAGYU", action: "試食フィードバック確認", type: "サンプル", overdue: false, icon: Phone },
 ];
 
 const recentActivities = [
-  { text: "チキンステーキ（ハーブ）の提案書を作成", who: "田中", time: "10分前" },
-  { text: "「居酒屋向け鶏肉」でAI検索", who: "佐藤", time: "25分前" },
-  { text: "手羽先餃子の商品詳細を閲覧", who: "鈴木", time: "1時間前" },
-  { text: "豚ロースカツと白身魚フライを比較", who: "田中", time: "2時間前" },
-  { text: "鳥貴族 新宿店に提案書を送付", who: "山田", time: "3時間前" },
+  { text: "学食サービス 青葉 — 採用決定（唐揚げ・ロースカツ・魚フライ）", who: "佐藤", time: "2時間前" },
+  { text: "カフェ BLOOM にハーブチキンのサンプル発送", who: "佐藤", time: "3時間前" },
+  { text: "居酒屋 鳥よし 池袋店を訪問 — 手羽先餃子が好評", who: "田中", time: "昨日" },
+  { text: "弁当工房 さくら亭に提案書を送付", who: "田中", time: "昨日" },
+  { text: "焼肉ダイニング WAGYU にサンプル発送", who: "鈴木", time: "2日前" },
 ];
 
 const growthProducts = [
@@ -80,12 +95,14 @@ export default function DashboardPage() {
         {/* Left: Actions + Activity */}
         <div className="lg:col-span-2 space-y-6">
           {/* Quick links */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
             {[
+              { label: "商談管理", href: "/deals", icon: Handshake },
+              { label: "営業日報", href: "/activities", icon: ClipboardList },
+              { label: "サンプル手配", href: "/samples", icon: Truck },
               { label: "AI検索", href: "/search", icon: Search },
-              { label: "商品一覧", href: "/products", icon: Package },
               { label: "提案書作成", href: "/proposals", icon: FileText },
-              { label: "販売分析", href: "/analytics", icon: BarChart3 },
+              { label: "商品カタログ", href: "/products", icon: Package },
             ].map((a) => {
               const Icon = a.icon;
               return (
@@ -97,6 +114,40 @@ export default function DashboardPage() {
                 </Link>
               );
             })}
+          </div>
+
+          {/* Today's Actions */}
+          <div>
+            <div className="flex items-center justify-between mb-3">
+              <p className="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+                <AlertCircle size={13} /> 今日のアクション
+              </p>
+              <Link href="/deals" className="text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-300">
+                商談一覧 →
+              </Link>
+            </div>
+            <div className="space-y-0 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 overflow-hidden">
+              {todayActions.map((a, i) => {
+                const Icon = a.icon;
+                return (
+                  <div key={i} className={`flex items-center gap-3 px-4 py-3 border-b border-slate-100 dark:border-slate-700 last:border-0 text-sm ${a.overdue ? "bg-red-50/50 dark:bg-red-900/10" : ""}`}>
+                    <Icon size={15} className={a.overdue ? "text-red-400" : "text-slate-400 dark:text-slate-500"} />
+                    <div className="flex-1 min-w-0">
+                      <span className="text-slate-600 dark:text-slate-300 truncate block">{a.action}</span>
+                      <span className="text-xs text-slate-400 dark:text-slate-500">{a.client}</span>
+                    </div>
+                    <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+                      a.type === "商談" ? "bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400"
+                      : a.type === "サンプル" ? "bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400"
+                      : "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400"
+                    }`}>
+                      {a.type}
+                    </span>
+                    {a.overdue && <span className="text-xs text-red-500 font-medium">期限超過</span>}
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
           {/* AI insight - subtle */}
