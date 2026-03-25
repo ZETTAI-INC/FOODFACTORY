@@ -142,7 +142,7 @@ export default function QRPage() {
       </div>
 
       {/* Info Banner */}
-      <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-slate-700 rounded-xl p-6 flex items-start gap-4">
+      <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-slate-700 rounded-xl p-4 sm:p-6 flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
         <Smartphone size={24} className="text-blue-500" />
         <div>
           <h3 className="font-bold text-blue-800 dark:text-blue-200 mb-1">QRコードの活用方法</h3>
@@ -200,14 +200,14 @@ export default function QRPage() {
 
       {/* List View */}
       {activeTab === "list" && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 print:hidden">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6 print:hidden">
           {products.map((product) => (
             <div
               key={product.id}
-              className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 text-center hover:shadow-md transition-shadow group"
+              className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 sm:p-6 text-center hover:shadow-md transition-shadow group"
             >
               {/* Generated QR Code */}
-              <div className="w-40 h-40 mx-auto mb-4 p-2 bg-white rounded-xl border border-slate-100 dark:border-slate-700 group-hover:border-blue-200 dark:group-hover:border-blue-600 transition-colors">
+              <div className="w-32 h-32 sm:w-40 sm:h-40 mx-auto mb-4 p-2 bg-white rounded-xl border border-slate-100 dark:border-slate-700 group-hover:border-blue-200 dark:group-hover:border-blue-600 transition-colors">
                 <div
                   dangerouslySetInnerHTML={{
                     __html: generateQRCodeSVG(product.code, 140),

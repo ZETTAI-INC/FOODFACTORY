@@ -84,13 +84,13 @@ export default function DashboardPage() {
     .slice(0, 4);
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto pb-12">
+    <div className="space-y-6 sm:space-y-8 max-w-7xl mx-auto pb-12">
       {/* Welcome Hero Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-slate-800 dark:bg-slate-900 p-8 sm:p-10 text-white shadow-xl">
+      <div className="relative overflow-hidden rounded-3xl bg-slate-800 dark:bg-slate-900 p-5 sm:p-8 md:p-10 text-white shadow-xl">
         <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 blur-3xl rounded-full -mr-20 -mt-20 pointer-events-none"></div>
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3 flex items-center gap-3">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3 flex items-center gap-3">
               {greeting}、佐藤さん！ <span className="animate-wave inline-block origin-bottom-right">👋</span>
             </h1>
             <p className="text-slate-300 max-w-xl text-sm sm:text-base leading-relaxed font-medium">
@@ -98,7 +98,7 @@ export default function DashboardPage() {
               優先度の高いアクションから確認してみましょう。
             </p>
           </div>
-          <div className="shrink-0 bg-white/5 backdrop-blur-sm rounded-2xl p-5 border border-white/10 flex items-center gap-4">
+          <div className="w-full md:w-auto shrink-0 bg-white/5 backdrop-blur-sm rounded-2xl p-5 border border-white/10 flex items-center gap-4">
             <div className="text-center">
               <p className="text-slate-400 text-xs font-bold uppercase tracking-wider mb-1">今週の目標達成率</p>
               <div className="flex items-baseline gap-1 justify-center">
@@ -130,7 +130,7 @@ export default function DashboardPage() {
                 <Icon size={120} className="text-slate-900 dark:text-white" />
               </div>
               <div className="relative z-10">
-                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center bg-gradient-to-br ${s.color} text-white shadow-md mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300`}>
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center bg-gradient-to-br ${s.color} text-white shadow-md mb-3 sm:mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300`}>
                   <Icon size={24} />
                 </div>
                 <p className="text-sm text-slate-500 dark:text-slate-400 font-bold tracking-wide">{s.label}</p>
@@ -149,7 +149,7 @@ export default function DashboardPage() {
         {/* Left: Actions + Activity */}
         <div className="lg:col-span-8 space-y-8">
           {/* Quick links */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3 md:gap-4">
             {[
               { label: "商談を管理", href: "/deals", icon: Handshake, color: "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10 shadow-blue-100/50" },
               { label: "日報を書く", href: "/activities", icon: ClipboardList, color: "text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-500/10 shadow-indigo-100/50" },
@@ -161,7 +161,7 @@ export default function DashboardPage() {
               const Icon = a.icon;
               return (
                 <Link key={a.href} href={a.href} className="group outline-none">
-                  <div className="flex items-center gap-3.5 px-4 py-4 rounded-2xl bg-white dark:bg-slate-800 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-lg hover:-translate-y-0.5 hover:border-slate-200 dark:hover:border-slate-600 transition-all duration-300">
+                  <div className="flex items-center gap-2.5 sm:gap-3.5 px-3 py-3 sm:px-4 sm:py-4 rounded-2xl bg-white dark:bg-slate-800 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-lg hover:-translate-y-0.5 hover:border-slate-200 dark:hover:border-slate-600 transition-all duration-300">
                     <div className={`w-11 h-11 rounded-xl flex items-center justify-center ${a.color} shadow-sm group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300`}>
                       <Icon size={20} />
                     </div>
@@ -175,7 +175,7 @@ export default function DashboardPage() {
           </div>
 
           {/* AI insight - Special Glow Card */}
-          <div className="relative overflow-hidden bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-white dark:border-slate-700 shadow-lg shadow-purple-100/50 dark:shadow-none transition-all hover:shadow-xl">
+          <div className="relative overflow-hidden bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 backdrop-blur-xl rounded-3xl p-5 sm:p-6 md:p-8 border border-white dark:border-slate-700 shadow-lg shadow-purple-100/50 dark:shadow-none transition-all hover:shadow-xl">
             <div className="absolute -top-20 -right-20 w-64 h-64 bg-purple-400/20 dark:bg-purple-500/10 blur-3xl rounded-full pointer-events-none"></div>
             <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-indigo-400/20 dark:bg-indigo-500/10 blur-3xl rounded-full pointer-events-none"></div>
             <div className="relative z-10">
@@ -245,7 +245,7 @@ export default function DashboardPage() {
           {/* Recent Activity */}
           <div>
             <h2 className="text-lg font-black text-slate-800 dark:text-white mb-5 px-2">最近のアクティビティ</h2>
-            <div className="bg-white dark:bg-slate-800 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-sm p-6 space-y-6">
+            <div className="bg-white dark:bg-slate-800 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-sm p-4 sm:p-6 space-y-4 sm:space-y-6">
               {recentActivities.map((a, i) => (
                 <div key={i} className="flex gap-4 group">
                   <div className="flex flex-col items-center">

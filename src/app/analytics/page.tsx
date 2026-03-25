@@ -111,8 +111,8 @@ export default function AnalyticsPage() {
   const [period, setPeriod] = useState("12months");
 
   return (
-    <div className="space-y-8">
-      <div className="flex items-center justify-between">
+    <div className="space-y-6 sm:space-y-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100">販売分析</h1>
           <p className="text-slate-500 dark:text-slate-400 mt-1">販売実績と傾向分析</p>
@@ -121,7 +121,7 @@ export default function AnalyticsPage() {
           <select
             value={period}
             onChange={(e) => setPeriod(e.target.value)}
-            className="px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-sm bg-white dark:bg-slate-800 dark:text-slate-100 cursor-pointer focus:border-blue-400 outline-none"
+            className="w-full sm:w-auto px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-sm bg-white dark:bg-slate-800 dark:text-slate-100 cursor-pointer focus:border-blue-400 outline-none"
           >
             <option value="3months">直近3ヶ月</option>
             <option value="6months">直近6ヶ月</option>
@@ -132,40 +132,40 @@ export default function AnalyticsPage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 hover:shadow-md transition-shadow">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 sm:p-6 hover:shadow-md transition-shadow">
           <p className="text-sm text-slate-500 dark:text-slate-400">年間売上（推定）</p>
-          <p className="text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">¥74,400,000</p>
+          <p className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">¥74,400,000</p>
           <p className="text-xs text-emerald-600 dark:text-emerald-400 mt-2 flex items-center gap-1">
             <ArrowUpRight size={12} /> 前年比 107%
           </p>
         </div>
-        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 hover:shadow-md transition-shadow">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 sm:p-6 hover:shadow-md transition-shadow">
           <p className="text-sm text-slate-500 dark:text-slate-400">月平均売上</p>
-          <p className="text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">¥6,200,000</p>
+          <p className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">¥6,200,000</p>
           <p className="text-xs text-slate-400 dark:text-slate-500 mt-2">直近12ヶ月平均</p>
         </div>
-        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 hover:shadow-md transition-shadow">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 sm:p-6 hover:shadow-md transition-shadow">
           <p className="text-sm text-slate-500 dark:text-slate-400">最高成長商品</p>
-          <p className="text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">手羽先餃子</p>
+          <p className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">手羽先餃子</p>
           <p className="text-xs text-emerald-600 dark:text-emerald-400 mt-2 flex items-center gap-1">
             <TrendingUp size={12} /> 前年比 130%
           </p>
         </div>
-        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 hover:shadow-md transition-shadow">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 sm:p-6 hover:shadow-md transition-shadow">
           <p className="text-sm text-slate-500 dark:text-slate-400">アクティブ商品</p>
-          <p className="text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">20商品</p>
+          <p className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">20商品</p>
           <p className="text-xs text-blue-600 dark:text-blue-400 mt-2">7カテゴリ / 9業態</p>
         </div>
       </div>
 
       {/* KPI Progress */}
-      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 sm:p-6">
         <h2 className="font-bold text-slate-800 dark:text-slate-100 mb-4 flex items-center gap-2">
           <Target size={18} className="text-blue-500" />
           KPI進捗
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {kpiTargets.map((kpi) => {
             const pct = Math.min((kpi.current / kpi.target) * 100, 100);
             const isAchieved = kpi.current >= kpi.target;
@@ -207,11 +207,11 @@ export default function AnalyticsPage() {
             直近12ヶ月
           </div>
         </div>
-        <div className="flex items-end gap-2 h-64">
+        <div className="flex items-end gap-1 sm:gap-2 h-48 sm:h-64">
           {monthlyData.map((d, i) => (
             <div key={d.month} className="flex-1 flex flex-col items-center gap-2 group">
               <div className="relative">
-                <span className="text-xs text-slate-400 dark:text-slate-500 font-medium group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                <span className="hidden sm:inline text-xs text-slate-400 dark:text-slate-500 font-medium group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                   {d.value}
                 </span>
                 {/* Tooltip */}
@@ -232,7 +232,7 @@ export default function AnalyticsPage() {
                 }`}
                 style={{ height: `${(d.value / maxValue) * 200}px` }}
               />
-              <span className={`text-xs ${d.value === maxValue ? "text-blue-600 dark:text-blue-400 font-bold" : "text-slate-400 dark:text-slate-500"}`}>
+              <span className={`text-[10px] sm:text-xs ${d.value === maxValue ? "text-blue-600 dark:text-blue-400 font-bold" : "text-slate-400 dark:text-slate-500"}`}>
                 {d.month}
               </span>
             </div>
@@ -248,8 +248,8 @@ export default function AnalyticsPage() {
             カテゴリ別売上構成
           </h2>
           {/* Visual pie chart representation */}
-          <div className="flex items-center gap-6 mb-6">
-            <div className="relative w-36 h-36 shrink-0">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mb-4 sm:mb-6">
+            <div className="relative w-28 h-28 sm:w-36 sm:h-36 shrink-0">
               <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
                 {(() => {
                   let offset = 0;
@@ -295,7 +295,7 @@ export default function AnalyticsPage() {
                 <div className={`w-2.5 h-2.5 rounded-full ${cat.color} shrink-0`} />
                 <span className="text-sm text-slate-700 dark:text-slate-200 flex-1">{cat.category}</span>
                 <span className="text-xs text-slate-400 dark:text-slate-500">{cat.products}品</span>
-                <span className="text-sm font-medium text-slate-800 dark:text-slate-100 w-28 text-right">{cat.revenue}</span>
+                <span className="hidden sm:block text-sm font-medium text-slate-800 dark:text-slate-100 w-28 text-right">{cat.revenue}</span>
                 <span className="text-xs text-slate-500 dark:text-slate-400 w-10 text-right">{cat.share}%</span>
               </div>
             ))}
@@ -334,7 +334,7 @@ export default function AnalyticsPage() {
           </h2>
           <div className="space-y-2">
             {productPerformance.map((pp) => (
-              <div key={pp.name} className="flex items-center gap-3 py-2.5 border-b border-slate-100 dark:border-slate-700 last:border-0 hover:bg-slate-50/50 dark:hover:bg-slate-700/50 rounded transition-colors">
+              <div key={pp.name} className="flex items-center gap-3 py-2 sm:py-2.5 border-b border-slate-100 dark:border-slate-700 last:border-0 hover:bg-slate-50/50 dark:hover:bg-slate-700/50 rounded transition-colors">
                 <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${
                   pp.rank <= 3 ? "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400" : "bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400"
                 }`}>
@@ -363,7 +363,7 @@ export default function AnalyticsPage() {
           </h2>
           <div className="space-y-4">
             {seasonalInsights.map((si) => (
-              <div key={si.season} className={`bg-gradient-to-r ${si.color} rounded-xl p-4 border`}>
+              <div key={si.season} className={`bg-gradient-to-r ${si.color} rounded-xl p-3 sm:p-4 border`}>
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="font-bold text-sm text-slate-800 dark:text-slate-100 flex items-center gap-2">
                     <span>{si.icon}</span> {si.season}
@@ -387,7 +387,7 @@ export default function AnalyticsPage() {
       </div>
 
       {/* AI Comment */}
-      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl p-8 text-white relative overflow-hidden">
+      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl p-5 sm:p-8 text-white relative overflow-hidden">
         <div className="absolute right-0 top-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
         <div className="absolute left-20 bottom-0 w-40 h-40 bg-white/5 rounded-full translate-y-1/2" />
         <div className="relative">

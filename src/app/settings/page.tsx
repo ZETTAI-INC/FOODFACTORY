@@ -43,14 +43,14 @@ export default function SettingsPage() {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         {/* Section Nav */}
         <div className="lg:col-span-1">
-          <nav className="space-y-1">
+          <nav className="flex lg:flex-col overflow-x-auto gap-1 lg:overflow-visible pb-2 lg:pb-0 -mx-4 px-4 lg:mx-0 lg:px-0">
             {sections.map((section) => {
               const Icon = section.icon;
               return (
                 <button
                   key={section.id}
                   onClick={() => setActiveSection(section.id)}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors text-left ${
+                  className={`whitespace-nowrap shrink-0 lg:shrink lg:whitespace-normal w-auto lg:w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors text-left ${
                     activeSection === section.id
                       ? "bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300"
                       : "text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700"
@@ -68,7 +68,7 @@ export default function SettingsPage() {
         <div className="lg:col-span-3 space-y-6">
           {activeSection === "general" && (
             <>
-              <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+              <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 sm:p-6">
                 <h2 className="font-bold text-slate-800 dark:text-slate-100 mb-4">基本設定</h2>
                 <div className="space-y-4">
                   <div>
@@ -100,7 +100,7 @@ export default function SettingsPage() {
 
           {activeSection === "data" && (
             <>
-              <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+              <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 sm:p-6">
                 <h2 className="font-bold text-slate-800 dark:text-slate-100 mb-4 flex items-center gap-2">
                   <Database size={18} className="text-blue-500" />
                   データソース連携
@@ -122,7 +122,7 @@ export default function SettingsPage() {
                 </div>
               </div>
 
-              <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+              <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 sm:p-6">
                 <h2 className="font-bold text-slate-800 dark:text-slate-100 mb-4 flex items-center gap-2">
                   <Upload size={18} className="text-emerald-500" />
                   データインポート
@@ -149,7 +149,7 @@ export default function SettingsPage() {
           )}
 
           {activeSection === "users" && (
-            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 sm:p-6">
               <h2 className="font-bold text-slate-800 dark:text-slate-100 mb-4">ユーザー一覧</h2>
               <div className="space-y-3">
                 {[
@@ -182,7 +182,7 @@ export default function SettingsPage() {
           )}
 
           {activeSection === "notifications" && (
-            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 sm:p-6">
               <h2 className="font-bold text-slate-800 dark:text-slate-100 mb-4">通知設定</h2>
               <div className="space-y-4">
                 {[
@@ -215,12 +215,12 @@ export default function SettingsPage() {
           )}
 
           {activeSection === "appearance" && (
-            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 sm:p-6">
               <h2 className="font-bold text-slate-800 dark:text-slate-100 mb-4">表示設定</h2>
               <div className="space-y-4">
                 <div>
                   <label className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 block">テーマ</label>
-                  <div className="flex gap-3">
+                  <div className="flex flex-wrap gap-2 sm:gap-3">
                     {[
                       { label: "ライト", active: true },
                       { label: "ダーク", active: false },
@@ -241,7 +241,7 @@ export default function SettingsPage() {
                 </div>
                 <div>
                   <label className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 block">デフォルト表示</label>
-                  <div className="flex gap-3">
+                  <div className="flex flex-wrap gap-2 sm:gap-3">
                     <button className="px-4 py-2 rounded-lg text-sm font-medium bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800">グリッド</button>
                     <button className="px-4 py-2 rounded-lg text-sm font-medium bg-slate-50 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600">リスト</button>
                   </div>
@@ -260,7 +260,7 @@ export default function SettingsPage() {
           )}
 
           {activeSection === "security" && (
-            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 sm:p-6">
               <h2 className="font-bold text-slate-800 dark:text-slate-100 mb-4">セキュリティ設定</h2>
               <div className="space-y-4">
                 <div className="flex items-center justify-between py-3 border-b border-slate-100 dark:border-slate-700">

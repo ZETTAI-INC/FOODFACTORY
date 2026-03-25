@@ -218,12 +218,12 @@ export default function DealsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100">商談管理</h1>
           <p className="text-slate-500 dark:text-slate-400 mt-1">商談パイプラインと進捗を管理</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <div className="flex bg-slate-100 dark:bg-slate-700 rounded-lg p-1">
             <button
               onClick={() => setViewMode("list")}
@@ -242,7 +242,7 @@ export default function DealsPage() {
               パイプライン
             </button>
           </div>
-          <button className="flex items-center gap-2 px-4 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+          <button className="flex items-center gap-2 px-4 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors w-full sm:w-auto justify-center">
             <Plus size={16} />
             新規商談
           </button>
@@ -275,7 +275,8 @@ export default function DealsPage() {
 
       {/* Pipeline View */}
       {viewMode === "pipeline" && (
-        <div className="grid grid-cols-4 gap-3">
+        <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+        <div className="grid grid-cols-4 gap-3 min-w-[640px] sm:min-w-0">
           {activeStages.map((stage) => {
             const stageDeals = deals.filter((d) => d.stage === stage);
             const cfg = stageConfig[stage];
@@ -317,18 +318,19 @@ export default function DealsPage() {
             );
           })}
         </div>
+        </div>
       )}
 
       {/* List View */}
       {viewMode === "list" && (
         <>
           {/* Filters */}
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
             <Filter size={15} className="text-slate-400" />
             <select
               value={filterStage}
               onChange={(e) => setFilterStage(e.target.value)}
-              className="px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-sm bg-white dark:bg-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full sm:w-auto px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-sm bg-white dark:bg-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="すべて">すべてのステージ</option>
               {stages.map((s) => <option key={s} value={s}>{s}</option>)}
@@ -336,7 +338,7 @@ export default function DealsPage() {
             <select
               value={filterOwner}
               onChange={(e) => setFilterOwner(e.target.value)}
-              className="px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-sm bg-white dark:bg-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full sm:w-auto px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-sm bg-white dark:bg-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="すべて">すべての担当</option>
               <option value="田中">田中</option>
@@ -352,7 +354,7 @@ export default function DealsPage() {
               const Icon = cfg.icon;
               const overdue = isOverdue(deal.nextActionDate) && deal.stage !== "採用決定" && deal.stage !== "失注";
               return (
-                <div key={deal.id} className={`px-5 py-4 flex items-start gap-4 border-b border-slate-100 dark:border-slate-700 last:border-0 hover:bg-slate-50/50 dark:hover:bg-slate-700/30 transition-colors cursor-pointer ${overdue ? "bg-red-50/30 dark:bg-red-900/10" : ""}`}>
+                <div key={deal.id} className={`px-4 sm:px-5 py-4 flex items-start gap-3 sm:gap-4 border-b border-slate-100 dark:border-slate-700 last:border-0 hover:bg-slate-50/50 dark:hover:bg-slate-700/30 transition-colors cursor-pointer ${overdue ? "bg-red-50/30 dark:bg-red-900/10" : ""}`}>
                   <div className={`mt-0.5 p-1.5 rounded-lg ${cfg.bg}`}>
                     <Icon size={16} className={cfg.color} />
                   </div>
@@ -388,7 +390,7 @@ export default function DealsPage() {
                       <p className="text-xs text-slate-400 dark:text-slate-500 mt-1.5 line-clamp-1">{deal.notes}</p>
                     )}
                   </div>
-                  <div className="shrink-0 text-right">
+                  <div className="hidden sm:block shrink-0 text-right">
                     <p className="text-sm font-bold text-slate-800 dark:text-slate-100 tabular-nums">{formatCurrency(deal.expectedRevenue)}</p>
                     <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">更新 {formatDate(deal.updatedAt)}</p>
                   </div>
@@ -400,7 +402,7 @@ export default function DealsPage() {
       )}
 
       {/* Stage Summary Bar */}
-      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-5">
+      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 sm:p-5">
         <p className="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-3">ステージ別サマリー</p>
         <div className="flex items-center gap-1 h-3 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-700">
           {activeStages.map((stage) => {

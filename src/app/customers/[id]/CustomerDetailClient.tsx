@@ -143,29 +143,29 @@ export default function CustomerDetailClient({ id }: { id: string }) {
         </div>
       </div>
 
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <div className="bg-slate-100 dark:bg-slate-700 rounded-xl p-4">
-            <Building2 size={28} className="text-slate-600 dark:text-slate-300" />
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="flex items-center gap-3 sm:gap-4">
+          <div className="bg-slate-100 dark:bg-slate-700 rounded-xl p-3 sm:p-4">
+            <Building2 size={24} className="text-slate-600 dark:text-slate-300 sm:w-7 sm:h-7" />
           </div>
           <div>
-            <div className="flex items-center gap-3">
-              <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100">{customer.name}</h1>
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+              <h1 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-100">{customer.name}</h1>
               <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${customer.status === "active" ? "bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300" : "bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400"}`}>
                 <span className={`w-1.5 h-1.5 rounded-full mr-1.5 ${customer.status === "active" ? "bg-emerald-500" : "bg-slate-400"}`} />
                 {customer.status === "active" ? "アクティブ" : "休止"}
               </span>
             </div>
-            <p className="text-slate-500 dark:text-slate-400 mt-1">{customer.type} / {customer.area}</p>
+            <p className="text-sm sm:text-base text-slate-500 dark:text-slate-400 mt-1">{customer.type} / {customer.area}</p>
           </div>
         </div>
-        <button className="flex items-center gap-2 px-4 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+        <button className="flex items-center gap-2 px-4 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors w-full sm:w-auto justify-center">
           <Edit size={16} /> 編集
         </button>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+        <div className="lg:col-span-2 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 sm:p-6">
           <h2 className="font-bold text-slate-800 dark:text-slate-100 mb-5 flex items-center gap-2">
             <User size={18} className="text-slate-500 dark:text-slate-400" /> 顧客情報
           </h2>
@@ -206,7 +206,7 @@ export default function CustomerDetailClient({ id }: { id: string }) {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 sm:p-6">
         <h2 className="font-bold text-slate-800 dark:text-slate-100 mb-4 flex items-center gap-2">
           <Package size={18} className="text-emerald-500" /> 採用商品
         </h2>
@@ -220,12 +220,25 @@ export default function CustomerDetailClient({ id }: { id: string }) {
       </div>
 
       <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
-        <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-700">
+        <div className="px-4 sm:px-6 py-4 border-b border-slate-200 dark:border-slate-700">
           <h2 className="font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
             <Calendar size={18} className="text-blue-500" /> 発注履歴
           </h2>
         </div>
-        <div className="overflow-x-auto">
+        {/* Mobile card list */}
+        <div className="sm:hidden divide-y divide-slate-100 dark:divide-slate-700">
+          {customer.orderHistory.map((order, i) => (
+            <div key={i} className="p-4 space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-slate-600 dark:text-slate-300">{formatDate(order.date)}</span>
+                <span className="text-sm font-medium text-slate-800 dark:text-slate-100">{order.amount}</span>
+              </div>
+              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{order.items}</p>
+            </div>
+          ))}
+        </div>
+        {/* Desktop table */}
+        <div className="hidden sm:block overflow-x-auto">
           <table className="w-full">
             <thead>
               <tr className="border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-700/50">
@@ -247,12 +260,12 @@ export default function CustomerDetailClient({ id }: { id: string }) {
         </div>
       </div>
 
-      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl p-6 text-white">
+      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl p-4 sm:p-6 text-white">
         <h2 className="font-bold mb-3 flex items-center gap-2"><Sparkles size={18} /> AI インサイト</h2>
         <p className="text-blue-50 leading-relaxed">{customer.aiInsight}</p>
       </div>
 
-      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 sm:p-6">
         <h2 className="font-bold text-slate-800 dark:text-slate-100 mb-3 flex items-center gap-2">
           <Edit size={18} className="text-slate-500 dark:text-slate-400" /> メモ・備考
         </h2>

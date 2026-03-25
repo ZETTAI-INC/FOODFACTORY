@@ -211,14 +211,14 @@ export default function CustomersPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100">顧客管理</h1>
           <p className="text-slate-500 dark:text-slate-400 mt-1">
             取引先の情報管理・発注状況の確認
           </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <ExportButton
             data={customers.map((c) => ({
               name: c.name,
@@ -240,7 +240,7 @@ export default function CustomersPage() {
               { key: "status", label: "ステータス" },
             ]}
           />
-          <button className="flex items-center gap-2 px-4 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+          <button className="flex items-center gap-2 px-4 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors w-full sm:w-auto justify-center">
             <Plus size={16} />
             顧客を追加
           </button>
@@ -248,7 +248,7 @@ export default function CustomersPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((stat) => (
           <div
             key={stat.label}
@@ -309,8 +309,58 @@ export default function CustomersPage() {
         </div>
       </div>
 
-      {/* Customer Table */}
-      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+      {/* Customer Cards (Mobile) */}
+      <div className="space-y-3 sm:hidden">
+        {filtered.map((customer) => (
+          <div
+            key={customer.id}
+            onClick={() => window.location.href = `/customers/${customer.id.replace("C", "")}`}
+            className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 cursor-pointer hover:border-blue-300 dark:hover:border-blue-600 transition-colors"
+          >
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-2">
+                <div className="bg-slate-100 dark:bg-slate-700 rounded-lg p-2">
+                  <Building2 size={16} className="text-slate-500 dark:text-slate-400" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-slate-800 dark:text-slate-100">{customer.name}</p>
+                  <p className="text-xs text-slate-400 dark:text-slate-500">{customer.id}</p>
+                </div>
+              </div>
+              <span
+                className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${
+                  customer.status === "アクティブ"
+                    ? "bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300"
+                    : "bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400"
+                }`}
+              >
+                <span
+                  className={`w-1.5 h-1.5 rounded-full mr-1.5 ${
+                    customer.status === "アクティブ"
+                      ? "bg-emerald-500"
+                      : "bg-slate-400"
+                  }`}
+                />
+                {customer.status}
+              </span>
+            </div>
+            <div className="grid grid-cols-2 gap-2 mt-3 text-xs text-slate-500 dark:text-slate-400">
+              <div>業態: {customer.industry}</div>
+              <div>エリア: {customer.area}</div>
+              <div>採用商品: {customer.adoptedProducts}</div>
+              <div>月間: {formatCurrency(customer.monthlyOrder)}</div>
+            </div>
+          </div>
+        ))}
+        {filtered.length === 0 && (
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 px-5 py-12 text-center text-sm text-slate-400 dark:text-slate-500">
+            条件に一致する顧客が見つかりません
+          </div>
+        )}
+      </div>
+
+      {/* Customer Table (Desktop) */}
+      <div className="hidden sm:block bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>

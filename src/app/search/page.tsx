@@ -116,7 +116,7 @@ function SearchContent() {
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100">AI商品検索</h1>
           <p className="text-slate-500 dark:text-slate-400 mt-1">自然文で商品について質問できます</p>
@@ -133,9 +133,9 @@ function SearchContent() {
       </div>
 
       {/* Chat Area */}
-      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 min-h-[600px] flex flex-col shadow-sm">
+      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 min-h-[400px] sm:min-h-[600px] flex flex-col shadow-sm">
         {/* Messages */}
-        <div className="flex-1 p-6 overflow-y-auto space-y-6">
+        <div className="flex-1 p-4 sm:p-6 overflow-y-auto space-y-6">
           {messages.length === 0 && (
             <div className="text-center py-12">
               <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-blue-500/20">
@@ -147,7 +147,7 @@ function SearchContent() {
                 <br />
                 自然文で質問するとAIがお答えします
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-2xl mx-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto">
                 {exampleQuestions.map((q) => (
                   <button
                     key={q}
@@ -282,7 +282,7 @@ function SearchContent() {
         <div className="border-t border-slate-200 dark:border-slate-700 p-4">
           <form
             onSubmit={(e) => { e.preventDefault(); handleSend(); }}
-            className="flex gap-3"
+            className="flex gap-2 sm:gap-3"
           >
             <input
               type="text"
@@ -297,7 +297,7 @@ function SearchContent() {
               className="bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 dark:disabled:bg-slate-600 text-white px-5 py-3 rounded-lg transition-colors flex items-center gap-2 text-sm font-medium shadow-sm"
             >
               <Send size={16} />
-              送信
+              <span className="hidden sm:inline">送信</span>
             </button>
           </form>
         </div>

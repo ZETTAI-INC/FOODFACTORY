@@ -375,7 +375,7 @@ export default function ActivitiesPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100">
             営業日報
@@ -386,7 +386,7 @@ export default function ActivitiesPage() {
         </div>
         <button
           onClick={() => setShowForm(!showForm)}
-          className="flex items-center gap-2 px-4 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+          className="flex items-center justify-center gap-2 px-4 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors w-full sm:w-auto"
         >
           <Plus size={16} />
           活動を記録
@@ -394,20 +394,20 @@ export default function ActivitiesPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {stats.map((stat) => (
           <div
             key={stat.label}
-            className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-5 flex items-center gap-4"
+            className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-3 sm:p-5 flex items-center gap-3 sm:gap-4"
           >
-            <div className={`${stat.bg} rounded-lg p-3`}>
-              <stat.icon size={22} className={stat.color} />
+            <div className={`${stat.bg} rounded-lg p-2 sm:p-3`}>
+              <stat.icon size={20} className={`${stat.color} sm:w-[22px] sm:h-[22px]`} />
             </div>
-            <div>
-              <p className="text-sm text-slate-500 dark:text-slate-400">
+            <div className="min-w-0">
+              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 truncate">
                 {stat.label}
               </p>
-              <p className="text-xl font-bold text-slate-800 dark:text-slate-100">
+              <p className="text-lg sm:text-xl font-bold text-slate-800 dark:text-slate-100">
                 {stat.value}
               </p>
             </div>
@@ -417,7 +417,7 @@ export default function ActivitiesPage() {
 
       {/* New Activity Form */}
       {showForm && (
-        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 sm:p-6">
           <h2 className="text-sm font-semibold text-slate-800 dark:text-slate-100 mb-4 flex items-center gap-2">
             <Plus size={16} className="text-blue-600 dark:text-blue-400" />
             新しい活動を記録
@@ -636,17 +636,17 @@ export default function ActivitiesPage() {
           </div>
 
           {/* Form Actions */}
-          <div className="flex items-center justify-end gap-3 mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+          <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2 sm:gap-3 mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
             <button
               onClick={() => setShowForm(false)}
-              className="px-4 py-2 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors"
+              className="px-4 py-2.5 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors text-center"
             >
               キャンセル
             </button>
             <button
               onClick={handleSubmit}
               disabled={!formClient.trim()}
-              className="flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex items-center justify-center gap-2 px-5 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <CheckCircle size={14} />
               記録する
@@ -656,14 +656,14 @@ export default function ActivitiesPage() {
       )}
 
       {/* Filter Bar */}
-      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
-        <div className="flex flex-col sm:flex-row gap-3">
-          <div className="flex items-center gap-2">
-            <Filter size={16} className="text-slate-400 dark:text-slate-500" />
+      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-3 sm:p-4">
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+            <Filter size={16} className="text-slate-400 dark:text-slate-500 hidden sm:block" />
             <select
               value={filterType}
               onChange={(e) => setFilterType(e.target.value)}
-              className="px-3 py-2.5 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-700 dark:text-slate-200 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-1 sm:flex-none px-3 py-2.5 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-700 dark:text-slate-200 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="すべて">活動タイプ: すべて</option>
               {activityTypes.map((t) => (
@@ -675,7 +675,7 @@ export default function ActivitiesPage() {
             <select
               value={filterOutcome}
               onChange={(e) => setFilterOutcome(e.target.value)}
-              className="px-3 py-2.5 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-700 dark:text-slate-200 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-1 sm:flex-none px-3 py-2.5 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-700 dark:text-slate-200 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="すべて">結果: すべて</option>
               {outcomes.map((o) => (
@@ -708,7 +708,7 @@ export default function ActivitiesPage() {
             </div>
 
             {/* Activities for this date */}
-            <div className="space-y-3 ml-1">
+            <div className="space-y-3 ml-0 sm:ml-1">
               {grouped[date]
                 .sort((a, b) => b.time.localeCompare(a.time))
                 .map((activity) => {
@@ -719,7 +719,7 @@ export default function ActivitiesPage() {
                   return (
                     <div
                       key={activity.id}
-                      className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 hover:border-slate-300 dark:hover:border-slate-600 transition-colors"
+                      className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 px-3 sm:px-4 py-3 sm:py-4 hover:border-slate-300 dark:hover:border-slate-600 transition-colors"
                     >
                       <div className="flex items-start gap-3">
                         {/* Timeline dot + icon */}
@@ -774,17 +774,17 @@ export default function ActivitiesPage() {
 
                           {/* Next Action */}
                           {activity.nextAction && (
-                            <div className="mt-2 flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-700/50 rounded-lg px-3 py-2">
+                            <div className="mt-2 flex flex-wrap sm:flex-nowrap items-start sm:items-center gap-1.5 sm:gap-2 text-xs text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-700/50 rounded-lg px-2.5 sm:px-3 py-2">
                               <ArrowRight
                                 size={12}
-                                className="text-blue-500 dark:text-blue-400 shrink-0"
+                                className="text-blue-500 dark:text-blue-400 shrink-0 mt-0.5 sm:mt-0"
                               />
                               <span className="font-medium text-slate-700 dark:text-slate-300">
                                 次回:
                               </span>
-                              <span>{activity.nextAction}</span>
+                              <span className="break-words min-w-0">{activity.nextAction}</span>
                               {activity.nextActionDate && (
-                                <span className="ml-auto text-slate-400 dark:text-slate-500 shrink-0">
+                                <span className="sm:ml-auto text-slate-400 dark:text-slate-500 shrink-0">
                                   {activity.nextActionDate.replace(/-/g, "/")}
                                 </span>
                               )}
@@ -800,7 +800,7 @@ export default function ActivitiesPage() {
         ))}
 
         {sortedDates.length === 0 && (
-          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-12 text-center">
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-8 sm:p-12 text-center">
             <p className="text-sm text-slate-400 dark:text-slate-500">
               条件に一致する活動が見つかりません
             </p>

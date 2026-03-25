@@ -280,14 +280,14 @@ function SamplesContent() {
   return (
     <div className="max-w-6xl mx-auto space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100">サンプル管理</h1>
           <p className="text-slate-500 dark:text-slate-400 mt-1 text-sm">サンプル手配・発送・フォローを一元管理</p>
         </div>
         <button
           onClick={() => setShowForm(!showForm)}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg transition-colors flex items-center gap-2 text-sm font-medium shadow-sm"
+          className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2 text-sm font-medium shadow-sm"
         >
           {showForm ? <X size={16} /> : <Plus size={16} />}
           {showForm ? "閉じる" : "サンプル手配"}
@@ -320,12 +320,12 @@ function SamplesContent() {
       </div>
 
       {/* Pipeline View */}
-      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-5">
+      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 sm:p-5">
         <h2 className="text-sm font-bold text-slate-700 dark:text-slate-200 mb-4 flex items-center gap-2">
           <ArrowRight size={16} className="text-blue-500" />
           パイプライン
         </h2>
-        <div className="flex items-center gap-1 overflow-x-auto pb-2">
+        <div className="flex flex-wrap items-center gap-1 overflow-x-auto pb-2">
           {(["準備中", "発送済み", "到着確認", "フォロー済み", "採用"] as SampleStatus[]).map((stage, i) => {
             const config = statusConfig[stage];
             const Icon = config.icon;
@@ -357,12 +357,12 @@ function SamplesContent() {
 
       {/* New Sample Form */}
       {showForm && (
-        <div className="bg-white dark:bg-slate-800 rounded-xl border border-blue-200 dark:border-blue-800 p-6 shadow-sm animate-fade-in">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-blue-200 dark:border-blue-800 p-4 sm:p-6 shadow-sm animate-fade-in">
           <h2 className="font-bold text-slate-800 dark:text-slate-100 mb-5 flex items-center gap-2">
             <Package size={18} className="text-blue-500" />
             新規サンプル手配
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div>
               <label className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5 block">
                 <Building2 size={14} className="inline mr-1" />
@@ -396,7 +396,7 @@ function SamplesContent() {
               <Package size={14} className="inline mr-1" />
               送付商品 <span className="text-red-500">*</span>
             </label>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 max-h-48 overflow-y-auto p-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 max-h-48 overflow-y-auto p-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900">
               {products.map((p) => (
                 <label
                   key={p.id}
@@ -430,7 +430,7 @@ function SamplesContent() {
             )}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div>
               <label className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5 block">
                 規格・数量
@@ -457,7 +457,7 @@ function SamplesContent() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div>
               <label className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5 block">
                 目的
@@ -506,8 +506,8 @@ function SamplesContent() {
       )}
 
       {/* Filters */}
-      <div className="flex flex-wrap items-center gap-3">
-        <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-2 flex-wrap">
           <Filter size={14} className="text-slate-400 dark:text-slate-500" />
           <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">ステータス:</span>
           <div className="flex gap-1 flex-wrap">
@@ -526,12 +526,12 @@ function SamplesContent() {
             ))}
           </div>
         </div>
-        <div className="ml-auto flex items-center gap-2">
+        <div className="w-full sm:w-auto sm:ml-auto flex items-center gap-2">
           <span className="text-xs text-slate-500 dark:text-slate-400">並び替え:</span>
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as "requestDate" | "sentDate")}
-            className="text-xs px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 cursor-pointer focus:outline-none"
+            className="w-full sm:w-auto text-xs px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 cursor-pointer focus:outline-none"
           >
             <option value="requestDate">依頼日順</option>
             <option value="sentDate">発送日順</option>
@@ -547,7 +547,7 @@ function SamplesContent() {
           return (
             <div
               key={sample.id}
-              className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-5 hover:shadow-sm transition-shadow"
+              className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 sm:p-5 hover:shadow-sm transition-shadow"
             >
               <div className="flex flex-col md:flex-row md:items-start gap-4">
                 {/* Left: Main info */}

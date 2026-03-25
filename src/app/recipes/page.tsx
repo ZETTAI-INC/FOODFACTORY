@@ -193,7 +193,7 @@ export default function RecipesPage() {
       </div>
 
       {/* Input Section */}
-      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm space-y-5">
+      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 sm:p-6 shadow-sm space-y-5">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {/* Product Selection */}
           <div className="space-y-2 md:col-span-2">
@@ -287,7 +287,7 @@ export default function RecipesPage() {
 
         {/* Selected product detail card */}
         {selectedProduct && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-3">
               <p className="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">原材料</p>
               <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">{selectedProduct.ingredients}</p>
@@ -348,7 +348,7 @@ export default function RecipesPage() {
       {recipe && stats && (
         <div ref={resultRef} className="space-y-5 animate-[fade-in_0.4s_ease-out]">
           {/* Recipe Header with Summary Cards */}
-          <div className="bg-gradient-to-br from-orange-500 via-amber-500 to-orange-600 rounded-2xl p-6 text-white shadow-lg relative overflow-hidden">
+          <div className="bg-gradient-to-br from-orange-500 via-amber-500 to-orange-600 rounded-2xl p-4 sm:p-6 text-white shadow-lg relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" />
             <div className="relative">
@@ -398,7 +398,7 @@ export default function RecipesPage() {
 
           {/* Ingredients with Visual Bar Chart */}
           <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
-            <div className="p-5 border-b border-slate-100 dark:border-slate-700">
+            <div className="p-4 sm:p-5 border-b border-slate-100 dark:border-slate-700">
               <h3 className="text-base font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
                 <div className="w-7 h-7 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center">
                   <FlaskConical size={15} className="text-orange-500" />
@@ -406,7 +406,7 @@ export default function RecipesPage() {
                 原材料配合
               </h3>
             </div>
-            <div className="p-5">
+            <div className="p-4 sm:p-5">
               <div className="space-y-3">
                 {stats.ingWithNum.map((ing, i) => (
                   <div key={i} className="group">
@@ -444,7 +444,7 @@ export default function RecipesPage() {
 
           {/* Manufacturing Steps - Interactive Timeline */}
           <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
-            <div className="p-5 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
+            <div className="p-4 sm:p-5 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
               <h3 className="text-base font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
                 <div className="w-7 h-7 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center">
                   <ListOrdered size={15} className="text-orange-500" />
@@ -469,14 +469,14 @@ export default function RecipesPage() {
               </div>
             </div>
 
-            <div className="p-5 space-y-0">
+            <div className="p-4 sm:p-5 space-y-0">
               {recipe.steps.map((step, idx) => {
                 const isActive = activeStep === step.step;
                 const isLast = idx === recipe.steps.length - 1;
                 return (
                   <div
                     key={step.step}
-                    className="relative flex gap-4 cursor-pointer group"
+                    className="relative flex gap-3 sm:gap-4 cursor-pointer group"
                     onClick={() => setActiveStep(isActive ? null : step.step)}
                   >
                     {/* Timeline Track */}
@@ -536,7 +536,7 @@ export default function RecipesPage() {
 
           {/* Temperature Flow Visualization */}
           <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
-            <div className="p-5 border-b border-slate-100 dark:border-slate-700">
+            <div className="p-4 sm:p-5 border-b border-slate-100 dark:border-slate-700">
               <h3 className="text-base font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
                 <div className="w-7 h-7 bg-red-100 dark:bg-red-900/30 rounded-lg flex items-center justify-center">
                   <Thermometer size={15} className="text-red-500" />
@@ -544,7 +544,7 @@ export default function RecipesPage() {
                 温度管理フロー
               </h3>
             </div>
-            <div className="p-5">
+            <div className="p-4 sm:p-5">
               <div className="flex items-stretch gap-0 overflow-x-auto pb-2">
                 {recipe.steps.filter((s) => s.temperature).map((step, idx, arr) => (
                   <div key={step.step} className="flex items-stretch shrink-0">
@@ -571,7 +571,7 @@ export default function RecipesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
             {/* Equipment */}
             <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
-              <div className="p-5 border-b border-slate-100 dark:border-slate-700">
+              <div className="p-4 sm:p-5 border-b border-slate-100 dark:border-slate-700">
                 <h3 className="text-sm font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
                   <div className="w-6 h-6 bg-blue-100 dark:bg-blue-900/30 rounded-md flex items-center justify-center">
                     <Wrench size={13} className="text-blue-500" />
@@ -580,7 +580,7 @@ export default function RecipesPage() {
                   <span className="text-xs text-slate-400 dark:text-slate-500 font-normal ml-auto">{stats.equipmentCount}種類</span>
                 </h3>
               </div>
-              <div className="p-4">
+              <div className="p-3 sm:p-4">
                 <div className="flex flex-wrap gap-2">
                   {stats.equipment.map((eq) => (
                     <span key={eq} className="text-xs bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 rounded-lg px-3 py-1.5 font-medium">
@@ -593,7 +593,7 @@ export default function RecipesPage() {
 
             {/* Quality Points */}
             <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
-              <div className="p-5 border-b border-slate-100 dark:border-slate-700">
+              <div className="p-4 sm:p-5 border-b border-slate-100 dark:border-slate-700">
                 <h3 className="text-sm font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
                   <div className="w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 rounded-md flex items-center justify-center">
                     <ShieldCheck size={13} className="text-emerald-500" />
@@ -601,7 +601,7 @@ export default function RecipesPage() {
                   品質管理ポイント
                 </h3>
               </div>
-              <div className="p-4">
+              <div className="p-3 sm:p-4">
                 <ul className="space-y-2.5">
                   {recipe.qualityPoints.map((point, i) => (
                     <li key={i} className="flex items-start gap-2.5 text-sm text-slate-600 dark:text-slate-300">
@@ -615,7 +615,7 @@ export default function RecipesPage() {
 
             {/* Tips */}
             <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
-              <div className="p-5 border-b border-slate-100 dark:border-slate-700">
+              <div className="p-4 sm:p-5 border-b border-slate-100 dark:border-slate-700">
                 <h3 className="text-sm font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
                   <div className="w-6 h-6 bg-amber-100 dark:bg-amber-900/30 rounded-md flex items-center justify-center">
                     <Lightbulb size={13} className="text-amber-500" />
@@ -623,7 +623,7 @@ export default function RecipesPage() {
                   製造のコツ
                 </h3>
               </div>
-              <div className="p-4">
+              <div className="p-3 sm:p-4">
                 <ul className="space-y-2.5">
                   {recipe.tips.map((tip, i) => (
                     <li key={i} className="flex items-start gap-2.5 text-sm text-slate-600 dark:text-slate-300">
@@ -637,7 +637,7 @@ export default function RecipesPage() {
           </div>
 
           {/* Cost Estimate */}
-          <div className="bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-700/50 rounded-2xl border border-slate-200 dark:border-slate-700 p-5 flex items-center gap-4">
+          <div className="bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-700/50 rounded-2xl border border-slate-200 dark:border-slate-700 p-4 sm:p-5 flex items-center gap-4">
             <div className="w-10 h-10 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-600 flex items-center justify-center shadow-sm">
               <CircleDollarSign size={20} className="text-emerald-500" />
             </div>
@@ -659,7 +659,7 @@ export default function RecipesPage() {
 
       {/* Empty state */}
       {!recipe && !isGenerating && (
-        <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-12 text-center shadow-sm">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 sm:p-12 text-center shadow-sm">
           <div className="w-20 h-20 bg-gradient-to-br from-orange-400 to-amber-500 rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg shadow-orange-500/20 rotate-3">
             <ChefHat size={40} className="text-white -rotate-3" />
           </div>

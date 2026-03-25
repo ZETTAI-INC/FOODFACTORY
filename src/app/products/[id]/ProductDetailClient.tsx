@@ -57,7 +57,7 @@ export default function ProductDetailClient({ id }: { id: string }) {
   return (
     <div className="space-y-6 max-w-5xl">
       {/* Breadcrumb + actions */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <Link href="/products" className="flex items-center gap-1.5 text-sm text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300">
           <ArrowLeft size={14} /> 商品カタログ
         </Link>
@@ -93,12 +93,12 @@ export default function ProductDetailClient({ id }: { id: string }) {
       </div>
 
       {/* Header */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
         <div className="lg:col-span-1">
           <ProductImage code={product.code} category={product.category} size="xl" className="rounded-lg border border-slate-200 dark:border-slate-700" />
-          <div className="flex gap-2 mt-3">
+          <div className="flex flex-wrap gap-2 mt-3">
             {product.specs.map((spec) => (
-              <div key={spec} className="flex-1 text-center bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md py-2">
+              <div key={spec} className="flex-1 min-w-[4rem] text-center bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md py-2">
                 <p className="text-sm font-semibold text-slate-800 dark:text-slate-200">{spec}</p>
                 <p className="text-xs text-slate-400 dark:text-slate-500">規格</p>
               </div>
@@ -148,7 +148,7 @@ export default function ProductDetailClient({ id }: { id: string }) {
 
           {activeTab === "overview" && (
             <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <p className="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">調理方法</p>
                   <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{product.usageMethod}</p>
@@ -165,7 +165,7 @@ export default function ProductDetailClient({ id }: { id: string }) {
 
               <div>
                 <p className="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">メニュー提案</p>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
                   {product.menuSuggestions.map((menu) => (
                     <div key={menu} className="text-xs text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md px-3 py-2 text-center">
                       {menu}
@@ -175,13 +175,15 @@ export default function ProductDetailClient({ id }: { id: string }) {
               </div>
 
               {/* QR */}
-              <div className="flex items-center gap-4 px-4 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg">
-                <QrCode size={28} className="text-slate-300 dark:text-slate-600" />
-                <div>
-                  <p className="text-sm text-slate-700 dark:text-slate-300 font-medium">QRコード</p>
-                  <p className="text-xs text-slate-400 dark:text-slate-500">スマホで読み取って商品情報にアクセス</p>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 px-4 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg">
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <QrCode size={28} className="text-slate-300 dark:text-slate-600 shrink-0" />
+                  <div>
+                    <p className="text-sm text-slate-700 dark:text-slate-300 font-medium">QRコード</p>
+                    <p className="text-xs text-slate-400 dark:text-slate-500">スマホで読み取って商品情報にアクセス</p>
+                  </div>
                 </div>
-                <Link href="/qr" className="ml-auto text-xs text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+                <Link href="/qr" className="sm:ml-auto text-xs text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
                   QR管理 <ExternalLink size={10} />
                 </Link>
               </div>
@@ -216,7 +218,7 @@ export default function ProductDetailClient({ id }: { id: string }) {
                     { name: "弁当店B", since: "2024年1月〜", spec: product.specs[Math.min(1, product.specs.length - 1)] },
                     { name: "社員食堂C", since: "2025年10月〜", spec: product.specs[0] },
                   ].map((c) => (
-                    <div key={c.name} className="flex items-center justify-between px-4 py-2.5 border-b border-slate-100 dark:border-slate-700 last:border-0 text-sm">
+                    <div key={c.name} className="flex flex-col sm:flex-row sm:items-center justify-between px-4 py-2.5 border-b border-slate-100 dark:border-slate-700 last:border-0 text-sm">
                       <div>
                         <span className="text-slate-700 dark:text-slate-300">{c.name}</span>
                         <span className="text-slate-400 dark:text-slate-500 ml-2 text-xs">{c.since} · {c.spec}</span>
@@ -273,7 +275,7 @@ export default function ProductDetailClient({ id }: { id: string }) {
       {related.length > 0 && (
         <div>
           <p className="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-3">関連商品</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3">
             {related.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}

@@ -263,14 +263,14 @@ ${product.menuSuggestions.map((m) => `- **春の${m}** - 旬の野菜を添え�
       </div>
 
       {/* Template Selection */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {templates.map((tmpl) => {
           const Icon = tmpl.icon;
           return (
             <button
               key={tmpl.id}
               onClick={() => setSelectedTemplate(tmpl.id)}
-              className={`text-left p-4 rounded-xl border transition-all ${
+              className={`text-left p-3 sm:p-4 rounded-xl border transition-all ${
                 selectedTemplate === tmpl.id
                   ? "border-blue-400 bg-blue-50 dark:bg-blue-900/20 ring-2 ring-blue-100 dark:ring-blue-800"
                   : "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-sm"
@@ -327,7 +327,7 @@ ${product.menuSuggestions.map((m) => `- **春の${m}** - 旬の野菜を添え�
 
         {/* Selected product preview */}
         {selectedProductData && (
-          <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4 mb-4 flex items-center gap-4">
+          <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4 mb-4 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
             <ProductImage code={selectedProductData.code} size="sm" className="w-12 h-12 rounded-lg" />
             <div className="flex-1">
               <p className="text-sm font-bold text-slate-800 dark:text-slate-100">{selectedProductData.name}</p>
@@ -365,7 +365,7 @@ ${product.menuSuggestions.map((m) => `- **春の${m}** - 旬の野菜を添え�
       {/* Generated Proposal */}
       {proposal && (
         <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm animate-fade-in">
-          <div className="bg-slate-50 dark:bg-slate-700/50 border-b border-slate-200 dark:border-slate-700 px-6 py-4 flex items-center justify-between">
+          <div className="bg-slate-50 dark:bg-slate-700/50 border-b border-slate-200 dark:border-slate-700 px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <h2 className="font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
               <FileText size={18} className="text-emerald-500" />
               生成された提案書
@@ -373,7 +373,7 @@ ${product.menuSuggestions.map((m) => `- **春の${m}** - 旬の野菜を添え�
                 {templates.find((t) => t.id === selectedTemplate)?.label}
               </span>
             </h2>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               <button
                 onClick={handleCopy}
                 className="flex items-center gap-2 px-4 py-2 text-sm text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-100 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
@@ -385,7 +385,7 @@ ${product.menuSuggestions.map((m) => `- **春の${m}** - 旬の野菜を添え�
               </button>
             </div>
           </div>
-          <div className="p-8">
+          <div className="p-4 sm:p-6 md:p-8">
             <div
               className="prose prose-sm max-w-none text-slate-700 dark:text-slate-300"
               dangerouslySetInnerHTML={{

@@ -44,14 +44,14 @@ export default function ProductsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100">商品カタログ</h1>
           <p className="text-slate-500 dark:text-slate-400 mt-1">
             全{products.length}商品 / 表示中: {filtered.length}商品
           </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <ExportButton
             data={filtered.map((p) => ({
               code: p.code,
@@ -78,26 +78,26 @@ export default function ProductsPage() {
               setCompareMode(!compareMode);
               if (compareMode) setCompareIds([]);
             }}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+            className={`flex items-center gap-2 px-3 sm:px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
               compareMode
                 ? "bg-blue-600 text-white"
                 : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700"
             }`}
           >
             <GitCompare size={16} />
-            {compareMode ? "比較モード ON" : "商品を比較"}
+            <span className="hidden sm:inline">{compareMode ? "比較モード ON" : "商品を比較"}</span>
           </button>
         </div>
       </div>
 
       {/* Compare Bar */}
       {compareMode && (
-        <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
             <p className="text-sm text-blue-700 dark:text-blue-300 font-medium">
               比較する商品を選択してください（最大4商品）
             </p>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               {compareIds.map((id) => {
                 const p = getProductById(id);
                 if (!p) return null;
@@ -127,7 +127,7 @@ export default function ProductsPage() {
       )}
 
       {/* Search & Filters */}
-      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 sm:p-6">
         <div className="flex flex-col lg:flex-row gap-4">
           <div className="flex-1 relative">
             <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500" />
@@ -139,13 +139,13 @@ export default function ProductsPage() {
               className="w-full pl-10 pr-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 focus:border-blue-400 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-800 outline-none text-sm bg-white dark:bg-slate-800 dark:text-slate-100"
             />
           </div>
-          <div className="flex gap-3">
+          <div className="grid grid-cols-2 sm:flex gap-2 sm:gap-3">
             <div className="relative">
               <Filter size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500" />
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="pl-9 pr-8 py-3 rounded-lg border border-slate-200 dark:border-slate-700 text-sm appearance-none bg-white dark:bg-slate-800 dark:text-slate-100 cursor-pointer focus:border-blue-400 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-800 outline-none"
+                className="w-full sm:w-auto pl-9 pr-8 py-3 rounded-lg border border-slate-200 dark:border-slate-700 text-sm appearance-none bg-white dark:bg-slate-800 dark:text-slate-100 cursor-pointer focus:border-blue-400 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-800 outline-none"
               >
                 <option value="">全カテゴリ</option>
                 {categories.map((c) => (
@@ -156,7 +156,7 @@ export default function ProductsPage() {
             <select
               value={selectedBusiness}
               onChange={(e) => setSelectedBusiness(e.target.value)}
-              className="px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 text-sm appearance-none bg-white dark:bg-slate-800 dark:text-slate-100 cursor-pointer focus:border-blue-400 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-800 outline-none"
+              className="w-full sm:w-auto px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 text-sm appearance-none bg-white dark:bg-slate-800 dark:text-slate-100 cursor-pointer focus:border-blue-400 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-800 outline-none"
             >
               <option value="">全業態</option>
               {businessTypes.map((b) => (
@@ -193,7 +193,7 @@ export default function ProductsPage() {
 
         {/* Active Filters */}
         {(selectedCategory || selectedBusiness || query) && (
-          <div className="flex items-center gap-2 mt-4 pt-4 border-t border-slate-100 dark:border-slate-700">
+          <div className="flex flex-wrap items-center gap-2 mt-4 pt-4 border-t border-slate-100 dark:border-slate-700">
             <span className="text-xs text-slate-400 dark:text-slate-500">フィルター:</span>
             {query && (
               <span className="text-xs bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-2 py-1 rounded-full flex items-center gap-1">
@@ -225,7 +225,7 @@ export default function ProductsPage() {
 
       {/* Products Grid/List */}
       {viewMode === "grid" ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
           {filtered.map((product) => (
             <ProductCard
               key={product.id}
