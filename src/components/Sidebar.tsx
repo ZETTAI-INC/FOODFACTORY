@@ -19,6 +19,8 @@ import {
   Handshake,
   ClipboardList,
   Truck,
+  Megaphone,
+  ChefHat,
 } from "lucide-react";
 
 const navGroups = [
@@ -43,6 +45,12 @@ const navGroups = [
       { href: "/products", label: "商品カタログ", icon: Package },
       { href: "/search", label: "AI検索", icon: Search },
       { href: "/proposals", label: "提案書作成", icon: FileText },
+    ],
+  },
+  {
+    label: "製造",
+    items: [
+      { href: "/recipes", label: "AIレシピ提案", icon: ChefHat },
     ],
   },
   {
